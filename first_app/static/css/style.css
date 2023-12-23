@@ -1,0 +1,35 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 1024px;
+    padding: 0 10px;
+    margin: 0 auto;
+    /*position: relative;*/
+}
+
+.info {
+    padding: 10px;
+    position: absolute;
+    font-size: 50px;
+    z-index: 5;
+}
+
+.first_image {
+    position: relative;
+    max-width: 1024px;
+    max-height: 1024px;
+}
+
+.first_image img {
+    width: 100%;
+    height: 100%;
+}
+
+.user_info {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 10px;
+    font-size: 30px;
+    color: #590e0e;
+}

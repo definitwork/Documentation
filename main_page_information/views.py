@@ -9,3 +9,4 @@ from .serializers import AboutResourceSerializer
 class AboutResourceView(ListAPIView):
     serializer_class = AboutResourceSerializer
     queryset = AboutResource.objects.all()
+

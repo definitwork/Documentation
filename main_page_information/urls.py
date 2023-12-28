@@ -4,4 +4,5 @@ from main_page_information.views import AboutResourceView
 
 urlpatterns = [
     path('aboutresource/', AboutResourceView.as_view(), name='Resource')
+
 ]

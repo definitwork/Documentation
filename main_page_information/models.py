@@ -10,3 +10,10 @@ class AboutResource(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class SomeFacts(models.Model):
+    description = models.CharField(max_length=255)  # определение терминов или перечисление фактов
+
+    def __str__(self):
+        return self.description

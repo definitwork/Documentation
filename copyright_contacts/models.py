@@ -21,14 +21,20 @@ class Copyright(models.Model):
         return self.site_name
 
     def clean(self):
+        errors = {}
         if Copyright.objects.exists() and not Copyright.objects.values('site_name')[0]['site_name'] == self.site_name:
-            raise ValidationError('Таблица может содержать только одну запись, отредактируйте уже существующую запись.')
+            raise ValidationError('Таблица может содержать только одну запись, отредактируйте уже существующую.')
 
         if len(self.unp) < 9 or not self.unp.isdigit():
-            raise ValidationError({'unp': 'УНП должен состоять из 9 цифр.'})
+            errors.update({'unp': 'УНП должен состоять из 9 цифр.'})
 
         if len(self.postcode) < 6 or not self.postcode.isdigit():
-            raise ValidationError({'postcode': 'Не верный формат'})
+            errors.update({'postcode': 'Не верный формат'})
+
+        print(errors)
+
+        if errors:
+            raise ValidationError(errors)
 
 # class Contacts(models.Model):
 #     contact_title =

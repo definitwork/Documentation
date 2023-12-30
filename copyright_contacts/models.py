@@ -7,7 +7,7 @@ class Copyright(models.Model):
     owner_name = models.CharField(verbose_name='ФИО', max_length=100)  # ФИО или название компании-владельца сайта
     unp = models.CharField(verbose_name='УНП', max_length=9)  # УНП
     country = models.CharField(verbose_name='Страна', max_length=25)  # Страна
-    postcode = models.CharField(verbose_name='Индекс', max_length=6)  # индекс
+    postcode = models.CharField(verbose_name='Индекс', max_length=6)  # Индекс
     city = models.CharField(verbose_name='Город', max_length=25)  # Город
     street = models.CharField(verbose_name='Улица', max_length=50)  # Улица
     house = models.CharField(verbose_name='Дом', max_length=5)  # Номер дома
@@ -20,15 +20,19 @@ class Copyright(models.Model):
     def __str__(self):
         return self.site_name
 
-    def clean(self):
+    def clean_fields(self, exclude=None):
+        """Этот метод проверит все поля вашей модели."""
         errors = {}
         if Copyright.objects.exists() and not Copyright.objects.values('site_name')[0]['site_name'] == self.site_name:
+            # Проверяем есть ли уже запись в модели или нет
             raise ValidationError('Таблица может содержать только одну запись, отредактируйте уже существующую.')
 
         if len(self.unp) < 9 or not self.unp.isdigit():
+            # Проверка поля УНП
             errors.update({'unp': 'УНП должен состоять из 9 цифр.'})
 
         if len(self.postcode) < 6 or not self.postcode.isdigit():
+            # Проверка поля индекс
             errors.update({'postcode': 'Не верный формат'})
 
         if errors:

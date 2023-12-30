@@ -22,7 +22,7 @@ class Copyright(models.Model):
 
     def clean(self):
         if Copyright.objects.exists() and not Copyright.objects.values('site_name')[0]['site_name'] == self.site_name:
-            raise ValidationError('Таблица может содержать только одну запись')
+            raise ValidationError('Таблица может содержать только одну запись, отредактируйте уже существующую запись.')
 
         if len(self.unp) < 9 or not self.unp.isdigit():
             raise ValidationError({'unp': 'УНП должен состоять из 9 цифр.'})

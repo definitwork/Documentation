@@ -17,13 +17,6 @@ class Copyright(models.Model):
         verbose_name = 'Авторское право'
         ordering = ['site_name']
 
-    # def save(self, *args, **kwargs):
-    #     print(Copyright.objects.count())
-    #     if Copyright.objects.count() < 2:
-    #         print('ошибка')
-    #         # raise ValidationError("Модель может иметь только одну запись.")
-    #     super().save(*args, **kwargs)
-
     def __str__(self):
         return self.site_name
 

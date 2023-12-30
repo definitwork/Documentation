@@ -20,19 +20,20 @@ class Copyright(models.Model):
     def __str__(self):
         return self.site_name
 
-    def clean_fields(self, exclude=None):
-        """Этот метод проверит все поля вашей модели."""
+    def clean(self):
+        """Проверка некоторых полей модели."""
         errors = {}
+
+        # Проверяем есть ли уже запись в модели или нет
         if Copyright.objects.exists() and not Copyright.objects.values('site_name')[0]['site_name'] == self.site_name:
-            # Проверяем есть ли уже запись в модели или нет
             raise ValidationError('Таблица может содержать только одну запись, отредактируйте уже существующую.')
 
+        # Проверка поля УНП
         if len(self.unp) < 9 or not self.unp.isdigit():
-            # Проверка поля УНП
             errors.update({'unp': 'УНП должен состоять из 9 цифр.'})
 
+        # Проверка поля индекс
         if len(self.postcode) < 6 or not self.postcode.isdigit():
-            # Проверка поля индекс
             errors.update({'postcode': 'Не верный формат'})
 
         if errors:

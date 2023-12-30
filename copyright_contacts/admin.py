@@ -15,3 +15,4 @@ class CopyrightAdmin(admin.ModelAdmin):
                     'house'
                     )
     list_display_links = ('site_name',)
+

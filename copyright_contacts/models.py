@@ -31,8 +31,6 @@ class Copyright(models.Model):
         if len(self.postcode) < 6 or not self.postcode.isdigit():
             errors.update({'postcode': 'Не верный формат'})
 
-        print(errors)
-
         if errors:
             raise ValidationError(errors)
 

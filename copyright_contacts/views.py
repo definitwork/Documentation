@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from copyright_contacts.models import Copyright
-from copyright_contacts.serializers import CopyrightSerializers
+from .models import Copyright
+from .serializers import CopyrightSerializers
 
 
 class CopyrightAPIList(generics.ListAPIView):

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Copyright
+from .models import Copyright, Contacts
 
 
 @admin.register(Copyright)
@@ -15,4 +15,6 @@ class CopyrightAdmin(admin.ModelAdmin):
                     'house'
                     )
     list_display_links = ('site_name',)
+
+admin.site.register(Contacts)
 

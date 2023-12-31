@@ -39,7 +39,15 @@ class Copyright(models.Model):
         if errors:
             raise ValidationError(errors)
 
-# class Contacts(models.Model):
-#     contact_title =
-#     contact_link =
-#     contact_icon =
+class Contacts(models.Model):
+    contact_title = models.CharField(verbose_name='Название проекта', max_length=20)
+    contact_link = models.CharField(verbose_name='Название проекта', max_length=20)
+    # contact_icon =
+
+    class Meta:
+        verbose_name_plural = 'Контакты'
+        verbose_name = 'Контакт'
+        ordering = ['contact_title']
+
+    def __str__(self):
+        return self.contact_title

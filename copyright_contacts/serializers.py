@@ -14,3 +14,8 @@ class ContactsSerializers(serializers.ModelSerializer):
         model = Contacts
         fields = ['contact_title', 'contact_link']
 
+
+class CombinedSerializer(serializers.Serializer):
+    copyright = CopyrightSerializers()
+    contacts = ContactsSerializers()
+

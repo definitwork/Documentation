@@ -1,9 +1,20 @@
+from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Copyright, Contacts
-from .serializers import CopyrightSerializers, ContactsSerializers
+from .serializers import CopyrightSerializers, ContactsSerializers, CombinedSerializer
+
+
+class CombinedListAPIView(generics.ListAPIView):
+    queryset = Copyright.objects.all()
+    serializer_class = CopyrightSerializers
+
+
+class ContactsListAPIView(generics.ListAPIView):
+    queryset = Contacts.objects.all()
+    serializer_class = ContactsSerializers
 
 
 @api_view(['GET'])
@@ -29,3 +40,15 @@ class CombinedAPIView(APIView):
         }
 
         return Response(combined_data)
+
+
+class CombinedListView(generics.ListAPIView):
+    serializer_class = CombinedSerializer
+
+    def get_queryset(self):
+        copyright_queryset = Copyright.objects.all()
+        contacts_queryset = Contacts.objects.all()
+        queryset = list(copyright_queryset) + list(contacts_queryset)
+        print(queryset)
+        return queryset
+

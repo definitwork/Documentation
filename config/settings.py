@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "rest_framework",
     "corsheaders",
-    'main_page_information',
 
+    'main_page_information',
 
 ]
 

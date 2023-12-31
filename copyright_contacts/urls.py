@@ -1,8 +1,7 @@
 from django.urls import path
 
-from .views import CopyrightAPIList, ContactsAPIList
+from .views import get_copyright_and_contacts, CombinedAPIView
 
 urlpatterns = [
-    path('copyright/', CopyrightAPIList.as_view(), name='copyright'),
-    path('contacts/', ContactsAPIList.as_view(), name='contacts'),
+    path('copyright/', CombinedAPIView.as_view(), name='copyright'),
 ]

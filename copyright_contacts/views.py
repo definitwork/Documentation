@@ -43,7 +43,7 @@ class CombinedAPIView(APIView):
 
 
 class CombinedListView(generics.ListAPIView):
-    serializer_class = CopyrightSerializers
+    serializer_class = CombinedSerializer
 
     def get_queryset(self):
         copyright_queryset = Copyright.objects.all()

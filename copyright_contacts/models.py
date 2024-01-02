@@ -1,3 +1,4 @@
+from PIL import Image
 from django.db import models
 from django.core.exceptions import ValidationError
 
@@ -41,9 +42,9 @@ class Copyright(models.Model):
 
 
 class Contacts(models.Model):
-    contact_title = models.CharField(verbose_name='Название контакта', max_length=20)
-    contact_link = models.CharField(verbose_name='Ссылка на контакт', max_length=20)
-    # contact_icon =
+    contact_title = models.CharField(verbose_name='Название контакта', max_length=20)  # Тип контакта
+    contact_link = models.CharField(verbose_name='Ссылка на контакт', max_length=20)  # Сам номер телефона (ссылка)
+    contact_icon = models.ImageField(upload_to='./media/img/icons', blank=True, null=True)  # Иконки для соцсетей
 
     class Meta:
         verbose_name_plural = 'Контакты'
@@ -52,3 +53,9 @@ class Contacts(models.Model):
 
     def __str__(self):
         return self.contact_title
+
+
+    def save(self, *args, **kwargs):
+        img = Image.open(self.contact_icon)
+        print(img.size)
+        super().save(*args, **kwargs)

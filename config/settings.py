@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     "corsheaders",
 
     'main_page_information',
-
+    'user_profile'
 ]
 
 MIDDLEWARE = [

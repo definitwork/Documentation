@@ -43,7 +43,7 @@ urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
     path('admin/', admin.site.urls),
     path('api/v1/', include('main_page_information.urls')),
-
+    path('api/v1/profile/', include('user_profile.urls'))
 ]
 
 if settings.DEBUG:

@@ -1,3 +1,19 @@
 from django.db import models
 
-# Create your models here.
+
+class AboutResource(models.Model):
+    title = models.CharField(max_length=250, verbose_name='Название')  # заголовок Документация Человека
+    description = models.TextField(verbose_name='Описание')  # текст, описывающий видео
+    file = models.FileField(upload_to='./media/video', verbose_name='Загрузка видеофайла')  # Приветственное видео
+    data_add_video = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')  # Дата добавления видео
+    image = models.ImageField(upload_to='./media/img/preview')  # Превью картинки для видео
+
+    def __str__(self):
+        return self.title
+
+
+class SomeFacts(models.Model):
+    description = models.CharField(max_length=255)  # определение терминов или перечисление фактов
+
+    def __str__(self):
+        return self.description

@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import AboutResource, SomeFacts
 
-# Register your models here.
+
+admin.site.register(AboutResource)
+admin.site.register(SomeFacts)

@@ -42,7 +42,7 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path("__debug__/", include("debug_toolbar.urls")),
     path('admin/', admin.site.urls),
-    path('first_app/', include('first_app.urls')),  # удалить после проверки
+    path('api/v1/', include('main_page_information.urls')),
 
 ]
 

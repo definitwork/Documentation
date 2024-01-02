@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     "corsheaders",
 
     'main_page_information',
-    'first_app',  # удалить после проверки
 
 ]
 

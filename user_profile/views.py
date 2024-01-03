@@ -40,7 +40,7 @@ class LoginAPIView(APIView):
             user = authenticate(request, username=username, password=password)
             if user and user.is_active:
                 login(request, user)
-                return Response()
+                return Response({'success': 'Пользователь успешно авторизовался'})
             raise serializers.ValidationError("Пользователь не авторизован")
 
 

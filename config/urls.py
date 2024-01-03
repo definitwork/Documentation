@@ -45,6 +45,7 @@ urlpatterns = [
     path('api/v1/drf-auth/', include('rest_framework.urls')),
     path('api/v1/profile/', include('user_profile.urls')),
     path('api/v1/', include('main_page_information.urls')),
+    path('', include('home.urls')),
 ]
 
 if settings.DEBUG:

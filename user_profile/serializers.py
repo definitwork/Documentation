@@ -13,3 +13,11 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         if not value:
             raise serializers.ValidationError('Это поле не может быть пустым')
         return value
+
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)
+    # class Meta:
+    #     model = User
+    #     fields = ['username', 'password']

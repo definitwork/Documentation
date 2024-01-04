@@ -12,9 +12,14 @@ class CopyrightAdmin(admin.ModelAdmin):
                     'postcode',
                     'city',
                     'street',
-                    'house'
+                    'house',
                     )
     list_display_links = ('site_name',)
 
-admin.site.register(Contacts)
-
+@admin.register(Contacts)
+class ContactsAdmin(admin.ModelAdmin):
+    list_display = ('contact_title',
+                    'contact_link',
+                    'contact_icon',
+                    )
+    list_display_links = ('contact_title',)

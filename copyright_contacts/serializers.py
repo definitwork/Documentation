@@ -13,9 +13,3 @@ class ContactsSerializers(serializers.ModelSerializer):
     class Meta:
         model = Contacts
         fields = ['contact_title', 'contact_link']
-
-
-class CombinedSerializer(serializers.Serializer):
-    copyright = CopyrightSerializers()
-    contacts = ContactsSerializers()
-

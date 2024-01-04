@@ -13,7 +13,7 @@ class AboutResource(models.Model):
 
 
 class SomeFacts(models.Model):
-    description = models.CharField(max_length=255)  # определение терминов или перечисление фактов
+    description = models.TextField()  # определение терминов или перечисление фактов
 
     def __str__(self):
         return self.description

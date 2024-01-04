@@ -20,10 +20,13 @@ class CombinedAPIView(APIView):
     def get(self, request):
         copyright_queryset = Copyright.objects.all()
         contacts_queryset = Contacts.objects.all()
+
         copyright_serializer = CopyrightSerializers(copyright_queryset, many=True)
         contacts_serializer = ContactsSerializers(contacts_queryset, many=True)
+
         combined_data = {
             'copyright': copyright_serializer.data,
             'contacts': contacts_serializer.data
         }
+
         return Response(combined_data)

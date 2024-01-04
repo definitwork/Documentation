@@ -12,4 +12,4 @@ class CopyrightSerializers(serializers.ModelSerializer):
 class ContactsSerializers(serializers.ModelSerializer):
     class Meta:
         model = Contacts
-        fields = ['contact_title', 'contact_link']
+        fields = ['contact_title', 'contact_link', 'contact_icon']

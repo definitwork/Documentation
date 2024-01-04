@@ -45,7 +45,7 @@ urlpatterns = [
     path('api/v1/drf-auth/', include('rest_framework.urls')),
     path('api/v1/profile/', include('user_profile.urls')),
     path('api/v1/', include('main_page_information.urls')),
-    path('api/v1/copyright_contacts/', include('copyright_contacts.urls'))
+    path('api/v1/copyright_contacts/', include('copyright_contacts.urls')),
     path('', include('home.urls')),
 ]
 

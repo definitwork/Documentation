@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     
     'home',
     'main_page_information',
-    'user_profile'
+    'copyright_contacts',
+    'user_profile',
 ]
 
 MIDDLEWARE = [

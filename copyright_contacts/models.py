@@ -43,8 +43,8 @@ class Copyright(models.Model):
 
 class Contacts(models.Model):
     contact_title = models.CharField(verbose_name='Название контакта', max_length=20)  # Тип контакта
-    contact_link = models.CharField(verbose_name='Ссылка на контакт', max_length=20)  # Сам номер телефона (ссылка)
-    contact_icon = models.ImageField(upload_to='./media/img/icons', blank=True, null=True)  # Иконки для соцсетей
+    contact_link = models.CharField(verbose_name='Контакт', max_length=20)  # Сам номер телефона (ссылка)
+    contact_icon = models.ImageField(verbose_name='Иконка', upload_to='./media/img/icons', blank=True, null=True)  # Иконки для соцсетей
 
     class Meta:
         verbose_name_plural = 'Контакты'

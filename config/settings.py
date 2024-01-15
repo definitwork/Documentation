@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "rest_framework",
     "corsheaders",
+    'social_django',
+    'sslserver',
     
     'home',
     'main_page_information',
@@ -161,3 +163,33 @@ INTERNAL_IPS = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+LOGIN_REDIRECT_URL = 'home'
+
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_GITHUB_KEY = env_keys.get('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = env_keys.get('SOCIAL_AUTH_GITHUB_SECRET')
+
+SOCIAL_AUTH_FACEBOOK_KEY = env_keys.get('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = env_keys.get('SOCIAL_AUTH_FACEBOOK_SECRET')
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = env_keys.get('SOCIAL_AUTH_VK_OAUTH2_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = env_keys.get('SOCIAL_AUTH_VK_OAUTH2_SECRET')
+SOCIAL_AUTH_VK_OAUTH2_REDIRECT_URI = 'http://localhost/complete/vk-app'
+
+SOCIAL_AUTH_YANDEX_OAUTH2_KEY = env_keys.get('SOCIAL_AUTH_YANDEX_OAUTH2_KEY')
+SOCIAL_AUTH_YANDEX_OAUTH2_SECRET = env_keys.get('SOCIAL_AUTH_YANDEX_OAUTH2_SECRET')
+SOCIAL_AUTH_YANDEX_OAUTH2_REDIRECT_URI = 'http://127.0.0.1/auth/complete/yandex-oauth2/'
+
+AUTHENTICATION_BACKENDS = (
+    # 'social_core.backends.google.GoogleOAuth2',
+    # 'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.yandex.YandexOAuth2',
+    'social_core.backends.vk.VKOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+

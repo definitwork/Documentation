@@ -1,4 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.sites.models import Site
+from django.core.mail import send_mail
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, serializers
@@ -21,14 +29,53 @@ class UserRegistrationAPIView(APIView):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
             if password != password2:
                 return Response({'error': 'Пароли не совпадают'}, status=status.HTTP_400_BAD_REQUEST)
-            user = User(username=serializer.validated_data.get("username"),
-                        email=serializer.validated_data.get("email"),
-                        password=serializer.validated_data.get("password"))
-            user.set_password(serializer.validated_data.get("password"))
+
+            user = User(username=username, email=email, password=password, is_active=False)
+            user.set_password(password)
             user.save()
-            return Response({'success': 'Новый пользователь успешно зарегистрирован'}, status=status.HTTP_201_CREATED)
+
+            '''Функционал для отправки письма и генерации токена'''
+            token = default_token_generator.make_token(user)
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            activation_url = reverse_lazy('email_confirmation', kwargs={'uidb64': uid, 'token': token})
+            # current_site = Site.objects.get_current().domain
+            send_mail(
+                'Подтвердите свой электронный адрес',
+                f'Пожалуйста, перейдите по следующей ссылке, чтобы подтвердить свой адрес электронной почты: http://127.0.0.1:8000{activation_url}',
+                'igor-arsenal@yandex.by',
+                [user.email],
+                fail_silently=False,
+            )
+
+            return Response({'success': 'На Вашу электронную почту отправлено письмо с подтверждением'}, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class EmailConfirmationView(APIView):
+    def get(self, request, uidb64, token):
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+            user = None
+
+        if user is not None and default_token_generator.check_token(user, token):
+            user.is_active = True
+            user.save()
+            return redirect(
+                reverse_lazy('email_confirmation_success'))
+
+        return redirect(reverse_lazy('email_confirmation_error'))
+
+
+class EmailConfirmationSentView(TemplateView):
+    template_name = 'email_confirmation_sent.html'
+class EmailConfirmationSuccessView(TemplateView):
+    template_name = 'email_confirmation_success.html'
+
+class EmailConfirmationErrorView(TemplateView):
+    template_name = 'email_confirmation_error.html'
 
 
 class LoginAPIView(APIView):

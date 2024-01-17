@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "corsheaders",
     
     'home',
+    'streaming',
     'main_page_information',
     'copyright_contacts',
     'user_profile',

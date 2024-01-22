@@ -1,7 +1,8 @@
 from django.urls import path
 
 from user_profile.views import UserRegistrationAPIView, LoginAPIView, LogoutAPIView, EmailConfirmationSentView, \
-    EmailConfirmationView, EmailConfirmationSuccessView, EmailConfirmationErrorView
+    EmailConfirmationView, EmailConfirmationSuccessView, EmailConfirmationErrorView, PasswordResetView, EmailCheckView, \
+    PasswordResetSuccessView, PasswordResetErrorView
 
 urlpatterns = [
     path('register/', UserRegistrationAPIView.as_view(), name='register'),
@@ -10,5 +11,11 @@ urlpatterns = [
     path('email-confirmation-sent/', EmailConfirmationSentView.as_view(), name='email_confirmation_sent'),
     path('confirm-email/<str:uidb64>/<str:token>/', EmailConfirmationView.as_view(), name='email_confirmation'),
     path('email-confirmation-success/', EmailConfirmationSuccessView.as_view(), name='email_confirmation_success'),
-    path('email-confirmation-error/', EmailConfirmationErrorView.as_view(), name='email_confirmation_error')
+    path('email-confirmation-error/', EmailConfirmationErrorView.as_view(), name='email_confirmation_error'),
+
+    path('email-check/', EmailCheckView.as_view(), name='email_check'),
+    path('password-reset/<str:uidb64>/<str:token>/', PasswordResetView.as_view(), name='password_reset'),
+    path('password-reset-success/', PasswordResetSuccessView.as_view(), name='password_reset_success'),
+    path('password-reset-error/', PasswordResetErrorView.as_view(), name='password_reset_error'),
+
 ]

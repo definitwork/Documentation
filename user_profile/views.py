@@ -31,7 +31,6 @@ class UserRegistrationAPIView(APIView):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
             if password != password2:
                 return Response({'error': 'Пароли не совпадают'}, status=status.HTTP_400_BAD_REQUEST)
-
             user = User(username=username, email=email, password=password, is_active=False)
             user.set_password(password)
             user.save()

@@ -5,7 +5,8 @@ from django.core.exceptions import ValidationError
 
 class Copyright(models.Model):
     site_name = models.CharField(verbose_name='Название проекта', max_length=20)  # Название проекта
-    owner_name = models.CharField(verbose_name='ФИО', max_length=100)  # ФИО или название компании-владельца сайта
+    owner_name = models.CharField(verbose_name='ФИО или Название юр.лица',
+                                  max_length=100)  # ФИО или название компании-владельца сайта
     unp = models.CharField(verbose_name='УНП', max_length=9)  # УНП
     country = models.CharField(verbose_name='Страна', max_length=25)  # Страна
     postcode = models.CharField(verbose_name='Индекс', max_length=6)  # Индекс
@@ -44,7 +45,11 @@ class Copyright(models.Model):
 class Contacts(models.Model):
     contact_title = models.CharField(verbose_name='Название контакта', max_length=20)  # Тип контакта
     contact_link = models.CharField(verbose_name='Контакт', max_length=20)  # Сам номер телефона (ссылка)
-    contact_icon = models.ImageField(verbose_name='Иконка', upload_to='./img/icons', blank=True, null=True)  # Иконки для соцсетей
+    contact_icon = models.ImageField(verbose_name='Иконка для десктопной версии', upload_to='./img/icons',
+                                             blank=True, null=True)  # Иконки для соцсетей (десктоп)
+    contact_icon_adaptive = models.ImageField(verbose_name='Иконка для адаптивной версии', upload_to='./img/icons',
+                                              blank=True,
+                                              null=True)  # Иконки для соцсетей (адаптив)
 
     class Meta:
         verbose_name_plural = 'Контакты'
@@ -53,4 +58,3 @@ class Contacts(models.Model):
 
     def __str__(self):
         return self.contact_title
-

@@ -21,5 +21,6 @@ class ContactsAdmin(admin.ModelAdmin):
     list_display = ('contact_title',
                     'contact_link',
                     'contact_icon',
+                    'contact_icon_adaptive',
                     )
     list_display_links = ('contact_title',)

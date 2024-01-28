@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "rest_framework",
     "corsheaders",
+    "drf_recaptcha",
     
     'home',
     'streaming',
@@ -182,3 +183,5 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
+# Ключ для reCaptcha
+DRF_RECAPTCHA_SECRET_KEY = "6LcQ4VgpAAAAANwCKdQcXFG4Ut4YRkJBs8e3MHef"

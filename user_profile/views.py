@@ -19,7 +19,7 @@ from user_profile.serializers import UserRegistrationSerializer, LoginSerializer
 
 class UserRegistrationAPIView(APIView):
     def post(self, request):
-        serializer = UserRegistrationSerializer(data=request.data)
+        serializer = UserRegistrationSerializer(data=request.data, context={"request": request})
         if serializer.is_valid(raise_exception=True):
             username = serializer.validated_data.get("username")
             email = serializer.validated_data.get("email")

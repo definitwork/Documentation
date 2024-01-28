@@ -10,11 +10,13 @@ from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, serializers
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.conf import settings
-
 from user_profile.serializers import UserRegistrationSerializer, LoginSerializer, EmailSerializer, \
     ResetPasswordSerializer
+
+
+User = get_user_model()
 
 
 class UserRegistrationAPIView(APIView):
@@ -28,7 +30,7 @@ class UserRegistrationAPIView(APIView):
             if User.objects.filter(username=username).exists():
                 return Response(status=status.HTTP_400_BAD_REQUEST)
             if User.objects.filter(email=email).exists():
-                return Response(status=status.HTTP_400_BAD_REQUEST)
+                return Response({'error': 'Пользователь с таким email уже существует'}, status=status.HTTP_400_BAD_REQUEST)
             if password != password2:
                 return Response({'error': 'Пароли не совпадают'}, status=status.HTTP_400_BAD_REQUEST)
             user = User(username=username, email=email, password=password, is_active=False)

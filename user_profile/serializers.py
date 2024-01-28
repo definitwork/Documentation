@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from drf_recaptcha.fields import ReCaptchaV2Field
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -7,10 +8,11 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     password = serializers.CharField(min_length=8, write_only=True)
     password2 = serializers.CharField(min_length=8, write_only=True)
     accept_terms = serializers.BooleanField()
+    recaptcha = ReCaptchaV2Field(write_only=True)
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'password2', 'accept_terms']
+        fields = ['username', 'email', 'password', 'password2', 'accept_terms', 'recaptcha']
 
     def validate_email(self, value):
         if not value:
@@ -21,6 +23,10 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         if not value or value == 0:
             raise serializers.ValidationError('Вы должны принять условия пользовательского соглашения')
         return value
+
+    def validate(self, attrs):
+        attrs.pop('recaptcha')
+        return attrs
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()

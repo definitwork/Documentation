@@ -1,6 +1,23 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 
+
+class User(AbstractUser):
+    email = models.EmailField(_("email address"), blank=False, unique=True, null=False, error_messages={
+            "unique": _("A user with that email already exists."),
+        },)
+
+    # таким образом привожу весь email к нижнему регистру (по умолчанию только домен)
+    def clean(self):
+        super().clean()
+        self.email = self.__class__.objects.normalize_email(self.email).lower()
+
+        # запрещаю пустой email. Данный код защищает от ошибки,
+        # при сохранении нового пользователя через стандарную форму в админке, где нет поля email
+        if self.email == '' or self.email is None:
+            raise ValidationError('Поле email не может быть пустым')
 
 
 class Profile(models.Model):

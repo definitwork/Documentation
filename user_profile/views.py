@@ -12,6 +12,8 @@ from rest_framework.response import Response
 from rest_framework import status, serializers
 from django.contrib.auth import get_user_model
 from django.conf import settings
+from django.shortcuts import render
+
 from user_profile.serializers import UserRegistrationSerializer, LoginSerializer, EmailSerializer, \
     ResetPasswordSerializer
 
@@ -112,15 +114,12 @@ class EmailCheckView(APIView):
             if User.objects.filter(email=email).exists():
                 user = User.objects.get(email=email)
                 token = default_token_generator.make_token(user)
-                print('Token: ', token)
                 uid = urlsafe_base64_encode(force_bytes(user.pk))
-                print('Force bytes', force_bytes(user.pk))
-                print('Uid', uid)
-                activation_url = reverse_lazy('password_reset', kwargs={'uidb64': uid, 'token': token})
-                print(activation_url)
+                # activation_url = reverse_lazy('password_reset', kwargs={'uidb64': uid, 'token': token})
+                http_host = request.META.get('HTTP_HOST')
                 send_mail(
                     'Восстановление пароля',
-                    f'Для восстановления пароля перейдите по данной ссылке: http://127.0.0.1:8000{activation_url}',
+                    f'Для восстановления пароля перейдите по данной ссылке: http://{http_host}/password-reset/{uid}/{token}/',
                     'igor-arsenal@yandex.by',
                     [email],
                     fail_silently=False,
@@ -148,10 +147,10 @@ class PasswordResetView(APIView):
                     return Response({'error': 'Пароли не совпадают'}, status=status.HTTP_400_BAD_REQUEST)
                 user.set_password(password)
                 user.save()
-                return redirect(reverse_lazy('password_reset_success'))
+                return Response({'success': 'Пароль успешно изменен'}, status=status.HTTP_201_CREATED)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        return redirect(reverse_lazy('password_reset_error'))
+        return Response({'error': 'Ссылка для сброса пароля не действительна'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PasswordResetSuccessView(TemplateView):

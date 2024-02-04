@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'main_page_information',
     'copyright_contacts',
     'user_profile',
+    'news',
 ]
 
 SITE_ID = 1
@@ -186,4 +187,4 @@ EMAIL_ADMIN = EMAIL_HOST_USER
 AUTH_USER_MODEL = 'user_profile.User'
 
 # Ключ для reCaptcha
-DRF_RECAPTCHA_SECRET_KEY = "6LcQ4VgpAAAAANwCKdQcXFG4Ut4YRkJBs8e3MHef"
+DRF_RECAPTCHA_SECRET_KEY = env_keys.get('SECRET_KEY')

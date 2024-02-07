@@ -2,7 +2,7 @@ from django.db import models
 
 
 class NewsSection(models.Model):
-    title = models.CharField(verbose_name='Название секции', max_length=255)
+    title = models.CharField(verbose_name='Название секции', max_length=255, unique=True)
 
     class Meta:
         verbose_name_plural = 'Название секций'

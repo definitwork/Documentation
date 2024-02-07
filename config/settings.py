@@ -96,6 +96,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# Настройка для пагинатора
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,  # Лимит на количество элементов на странице
+}
 
 # не используем в этом проекте SQLITE3
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

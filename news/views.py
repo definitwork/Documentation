@@ -1,7 +1,6 @@
 from rest_framework import generics
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework import filters
-from django_filters import rest_framework as django_filters
 
 from .models import NewsSection, News
 from .serializers import NewsSectionSerializers, NewsSerializers, AllNewsTitleSerializers
@@ -19,7 +18,6 @@ class AllNewsTitleListAPIView(generics.ListAPIView):
         '-date_published')  # Сортировка в обратном порядке по полю date_published
     serializer_class = AllNewsTitleSerializers
     pagination_class = LimitOffsetPagination  # Пагинация
-    pagination_class.default_limit = 20  # Лимит на страницу
 
 
 class AllNewsListAPIView(generics.ListAPIView):
@@ -28,12 +26,9 @@ class AllNewsListAPIView(generics.ListAPIView):
         '-date_published')  # Сортировка в обратном порядке по полю date_published
     serializer_class = NewsSerializers
     pagination_class = LimitOffsetPagination  # Пагинация
-    pagination_class.default_limit = 10  # Лимит на страницу
-    # filter_backends = [filters.SearchFilter, django_filters.DjangoFilterBackend]
-    # search_fields = ['blog_title', 'blog_body']  # Поля, по которым будет выполняться поиск
-    # filterset_fields = {
-    #     'date_published': ['lte', 'gte']  # Поля для фильтрации по дате
-    # }
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['blog_title', 'blog_body']  # Поля, по которым будет выполняться поиск
+
 
 
 class ThisNewsListAPIView(generics.RetrieveAPIView):
@@ -48,12 +43,8 @@ class ThisSectionNewsListAPIView(generics.ListAPIView):
     """ Выводим все новости секции """
     serializer_class = NewsSerializers
     pagination_class = LimitOffsetPagination  # Пагинация
-    pagination_class.default_limit = 10  # Лимит на страницу
-    # filter_backends = [filters.SearchFilter, django_filters.DjangoFilterBackend]
-    # search_fields = ['blog_title', 'blog_body']  # Поля, по которым будет выполняться поиск
-    # filterset_fields = {
-    #     'date_published': ['lte', 'gte']  # Поля для фильтрации по дате
-    # }
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['blog_title', 'blog_body']  # Поля, по которым будет выполняться поиск
 
     def get_queryset(self):
         # Получаем значение параметра news_sections_id из URL

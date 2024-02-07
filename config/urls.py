@@ -48,6 +48,7 @@ urlpatterns = [
     path('api/v1/copyright_contacts/', include('copyright_contacts.urls')),
     path('api/v1/stream/', include('streaming.urls')),
     path('api/v1/news/', include('news.urls')),
+    path('api/v1/blog/', include('blog.urls')),
     path('', include('home.urls')),
 ]
 

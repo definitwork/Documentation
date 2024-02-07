@@ -7,7 +7,7 @@ class NewsSection(models.Model):
     class Meta:
         verbose_name_plural = 'Название секций'
         verbose_name = 'Название секции'
-        ordering = ['title']
+        ordering = ['id']
 
     def __str__(self):
         return self.title
@@ -29,7 +29,7 @@ class News(models.Model):
     class Meta:
         verbose_name_plural = 'Новости'
         verbose_name = 'Новость'
-        ordering = ['news_title']
+        ordering = ['-date_published']
 
     def __str__(self):
         return self.news_title

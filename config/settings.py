@@ -45,10 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'drf_yasg',
-    "debug_toolbar",
-    "rest_framework",
-    "corsheaders",
-    "drf_recaptcha",
+    'debug_toolbar',
+    'rest_framework',
+    'corsheaders',
+    'drf_recaptcha',
+    'django_filters',
     
     'home',
     'streaming',
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
     'copyright_contacts',
     'user_profile',
     'news',
+    'blog',
 ]
 
 SITE_ID = 1

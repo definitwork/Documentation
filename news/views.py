@@ -39,7 +39,7 @@ class ThisNewsListAPIView(generics.RetrieveAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
     lookup_field = 'id'  # Установите поле модели в качестве идентификатора
-    lookup_url_kwarg = 'news_id'  # Установите lookup_url_kwarg в 'user_id'
+    lookup_url_kwarg = 'news_id'  # Установите lookup_url_kwarg в 'news_id'
 
 
 class ThisSectionNewsListAPIView(generics.ListAPIView):

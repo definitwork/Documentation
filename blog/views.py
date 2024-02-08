@@ -38,7 +38,7 @@ class ThisBlogListAPIView(generics.RetrieveAPIView):
     queryset = Blogs.objects.all()
     serializer_class = BlogsSerializer
     lookup_field = 'id'  # Установите поле модели в качестве идентификатора
-    lookup_url_kwarg = 'blog_id'  # Установите lookup_url_kwarg в 'user_id'
+    lookup_url_kwarg = 'blog_id'  # Установите lookup_url_kwarg в 'blog_id'
 
 
 class ThisSectionBlogsListAPIView(generics.ListAPIView):

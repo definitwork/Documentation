@@ -30,7 +30,7 @@ class AllNewsListAPIView(generics.ListAPIView):
     pagination_class = LimitOffsetPagination  # Пагинация
     # Поиск по заголовку, содержанию и дате
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
-    search_fields = ['blog_title', 'blog_body']  # Поля, по которым будет выполняться поиск
+    search_fields = ['news_title', 'news_body']  # Поля, по которым будет выполняться поиск
     filterset_class = NewsFilter
 
 
@@ -39,7 +39,7 @@ class ThisNewsListAPIView(generics.RetrieveAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
     lookup_field = 'id'  # Установите поле модели в качестве идентификатора
-    lookup_url_kwarg = 'news_id'  # Установите lookup_url_kwarg в 'user_id'
+    lookup_url_kwarg = 'news_id'  # Установите lookup_url_kwarg в 'news_id'
 
 
 class ThisSectionNewsListAPIView(generics.ListAPIView):
@@ -48,7 +48,7 @@ class ThisSectionNewsListAPIView(generics.ListAPIView):
     pagination_class = LimitOffsetPagination  # Пагинация
     # Поиск по заголовку, содержанию и дате
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
-    search_fields = ['blog_title', 'blog_body']  # Поля, по которым будет выполняться поиск
+    search_fields = ['news_title', 'news_body']  # Поля, по которым будет выполняться поиск
     filterset_class = NewsFilter
 
     def get_queryset(self):

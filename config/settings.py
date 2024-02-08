@@ -45,10 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'drf_yasg',
-    "debug_toolbar",
-    "rest_framework",
-    "corsheaders",
-    "drf_recaptcha",
+    'debug_toolbar',
+    'rest_framework',
+    'corsheaders',
+    'drf_recaptcha',
+    'django_filters',
     
     'home',
     'streaming',
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
     'copyright_contacts',
     'user_profile',
     'news',
+    'blog',
 ]
 
 SITE_ID = 1
@@ -94,6 +96,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# Настройка для пагинатора
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,  # Лимит на количество элементов на странице
+}
 
 # не используем в этом проекте SQLITE3
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

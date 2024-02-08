@@ -28,10 +28,9 @@ class AllBlogsListAPIView(generics.ListAPIView):
         '-date_published')  # Сортировка в обратном порядке по полю date_published
     serializer_class = BlogsSerializer
     pagination_class = LimitOffsetPagination  # Пагинация
-
+    # Поиск по заголовку, содержанию и дате
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['blog_title', 'blog_body']  # Поля, по которым будет выполняться поиск
-    # filter_backends = [DjangoFilterBackend]
     filterset_class = BlogsFilter
 
 class ThisBlogListAPIView(generics.RetrieveAPIView):
@@ -46,8 +45,10 @@ class ThisSectionBlogsListAPIView(generics.ListAPIView):
     """ Выводим все блоги секции """
     serializer_class = BlogsSerializer
     pagination_class = LimitOffsetPagination  # Пагинация
-    filter_backends = [filters.SearchFilter]
+    # Поиск по заголовку, содержанию и дате
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['blog_title', 'blog_body']  # Поля, по которым будет выполняться поиск
+    filterset_class = BlogsFilter
 
     def get_queryset(self):
         # Получаем значение параметра blog_sections_id из URL

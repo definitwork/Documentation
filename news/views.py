@@ -1,7 +1,9 @@
 from rest_framework import generics
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 
+from .filters import NewsFilter
 from .models import NewsSection, News
 from .serializers import NewsSectionSerializer, NewsSerializer, AllNewsTitleSerializer
 
@@ -26,9 +28,10 @@ class AllNewsListAPIView(generics.ListAPIView):
         '-date_published')  # Сортировка в обратном порядке по полю date_published
     serializer_class = NewsSerializer
     pagination_class = LimitOffsetPagination  # Пагинация
-    filter_backends = [filters.SearchFilter]
+    # Поиск по заголовку, содержанию и дате
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['blog_title', 'blog_body']  # Поля, по которым будет выполняться поиск
-
+    filterset_class = NewsFilter
 
 
 class ThisNewsListAPIView(generics.RetrieveAPIView):
@@ -43,8 +46,10 @@ class ThisSectionNewsListAPIView(generics.ListAPIView):
     """ Выводим все новости секции """
     serializer_class = NewsSerializer
     pagination_class = LimitOffsetPagination  # Пагинация
-    filter_backends = [filters.SearchFilter]
+    # Поиск по заголовку, содержанию и дате
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['blog_title', 'blog_body']  # Поля, по которым будет выполняться поиск
+    filterset_class = NewsFilter
 
     def get_queryset(self):
         # Получаем значение параметра news_sections_id из URL

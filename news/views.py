@@ -30,7 +30,7 @@ class AllNewsListAPIView(generics.ListAPIView):
     pagination_class = LimitOffsetPagination  # Пагинация
     # Поиск по заголовку, содержанию и дате
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
-    search_fields = ['blog_title', 'blog_body']  # Поля, по которым будет выполняться поиск
+    search_fields = ['news_title', 'news_body']  # Поля, по которым будет выполняться поиск
     filterset_class = NewsFilter
 
 
@@ -48,7 +48,7 @@ class ThisSectionNewsListAPIView(generics.ListAPIView):
     pagination_class = LimitOffsetPagination  # Пагинация
     # Поиск по заголовку, содержанию и дате
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
-    search_fields = ['blog_title', 'blog_body']  # Поля, по которым будет выполняться поиск
+    search_fields = ['news_title', 'news_body']  # Поля, по которым будет выполняться поиск
     filterset_class = NewsFilter
 
     def get_queryset(self):

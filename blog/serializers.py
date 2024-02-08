@@ -4,25 +4,25 @@ from django.utils import formats
 from .models import BlogsSection, Blogs
 
 
-class BlogsSectionSerializers(serializers.ModelSerializer):
+class BlogsSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogsSection
         fields = ['title', ]
 
 
-class AllBlogsTitleSerializers(serializers.ModelSerializer):
+class AllBlogsTitleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blogs
         fields = ['blog_title', ]
 
 
-class BlogsSerializers(serializers.ModelSerializer):
+class BlogsSerializer(serializers.ModelSerializer):
 
-    def to_representation(self, instance):
-        """  Переопределяем вывод даты в формате 'd-m-Y H:i' """
-        representation = super().to_representation(instance)
-        representation['date_published'] = formats.date_format(instance.date_published, "d-m-Y H:i")
-        return representation
+    # def to_representation(self, instance):
+    #     """  Переопределяем вывод даты в формате 'd-m-Y H:i' """
+    #     representation = super().to_representation(instance)
+    #     representation['date_published'] = formats.date_format(instance.date_published, "d-m-Y H:i")
+    #     return representation
 
     class Meta:
         model = Blogs

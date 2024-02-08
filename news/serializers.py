@@ -4,19 +4,19 @@ from django.utils import formats
 from .models import NewsSection, News
 
 
-class NewsSectionSerializers(serializers.ModelSerializer):
+class NewsSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewsSection
         fields = ['title', ]
 
 
-class AllNewsTitleSerializers(serializers.ModelSerializer):
+class AllNewsTitleSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = ['news_title', ]
 
 
-class NewsSerializers(serializers.ModelSerializer):
+class NewsSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         """ Переопределяем вывод даты в формате 'd-m-Y H:i' """
         representation = super().to_representation(instance)

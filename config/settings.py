@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'user_profile',
     'news',
     'blog',
+    'docum_app',  # есть вопрос с неймингом приложения для раздела Документация
 ]
 
 SITE_ID = 1

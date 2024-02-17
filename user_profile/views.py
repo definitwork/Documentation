@@ -6,13 +6,15 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, serializers
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.shortcuts import render
+from copyright_contacts.models import Contacts, Copyright
+from user_profile.forms import ResetPasswordForm
 
 from user_profile.serializers import UserRegistrationSerializer, LoginSerializer, EmailSerializer, \
     ResetPasswordSerializer
@@ -96,7 +98,7 @@ class LoginAPIView(APIView):
             user = authenticate(request, username=username, password=password)
             if user and user.is_active:
                 login(request, user)
-                return Response({'success': 'Пользователь успешно авторизовался'})
+                return Response({'success': 'Пользователь успешно авторизовался', 'username': username})
             raise serializers.ValidationError("Пользователь не авторизован")
 
 
@@ -115,11 +117,10 @@ class EmailCheckView(APIView):
                 user = User.objects.get(email=email)
                 token = default_token_generator.make_token(user)
                 uid = urlsafe_base64_encode(force_bytes(user.pk))
-                # activation_url = reverse_lazy('password_reset', kwargs={'uidb64': uid, 'token': token})
-                http_host = request.META.get('HTTP_HOST')
+                activation_url = reverse_lazy('password_reset_page', kwargs={'uidb64': uid, 'token': token})
                 send_mail(
                     'Восстановление пароля',
-                    f'Для восстановления пароля перейдите по данной ссылке: http://{http_host}/password-reset/{uid}/{token}/',
+                    f'Для восстановления пароля перейдите по данной ссылке: http://127.0.0.1:8000{activation_url}',
                     'igor-arsenal@yandex.by',
                     [email],
                     fail_silently=False,
@@ -129,6 +130,53 @@ class EmailCheckView(APIView):
             return Response({'error': 'Пользователя с такой почтой не существует'}, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+
+class PasswordResetPageView(FormView):
+    form_class = ResetPasswordForm
+    template_name = 'password_reset_page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        copyright_queryset = Copyright.objects.all()
+        contacts_queryset = Contacts.objects.all()
+
+        contacts_names = contacts_queryset.filter(contact_title__startswith="Написать")
+        contacts_icons = contacts_queryset.exclude(contact_title__startswith="Написать")
+
+        context['copyright'] = copyright_queryset[0]
+        context['contacts_icons'] = contacts_icons
+        context['contacts_names'] = contacts_names
+
+        return context
+
+    def post(self, request, uidb64, token):
+        passwords_form = ResetPasswordForm(request.POST)
+        
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+            user = None
+        if user is not None and default_token_generator.check_token(user, token):
+
+            if passwords_form.is_valid():
+                
+                password = passwords_form.cleaned_data.get("password")
+                password2 = passwords_form.cleaned_data.get("password2")
+                if password != password2:
+                    passwords_form = ResetPasswordForm(request.POST)
+                    return render(request, 'password_reset_page.html', context = {'form': passwords_form, "form_error": "Пароли не совпадают"})
+                user.set_password(password)
+                user.save()
+                return redirect(reverse_lazy('password_reset_success'))
+            else:
+                print(passwords_form.errors)
+                print(passwords_form)
+                #passwords_form = ResetPasswordForm()
+                return render(request, 'password_reset_page.html', context = {'form': passwords_form})
+        return  redirect(reverse_lazy('password_reset_error'))
 
 
 class PasswordResetView(APIView):
@@ -159,3 +207,18 @@ class PasswordResetSuccessView(TemplateView):
 
 class PasswordResetErrorView(TemplateView):
     template_name = 'password_reset_error.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        copyright_queryset = Copyright.objects.all()
+        contacts_queryset = Contacts.objects.all()
+
+        contacts_names = contacts_queryset.filter(contact_title__startswith="Написать")
+        contacts_icons = contacts_queryset.exclude(contact_title__startswith="Написать")
+
+        context['copyright'] = copyright_queryset[0]
+        context['contacts_icons'] = contacts_icons
+        context['contacts_names'] = contacts_names
+
+        return context

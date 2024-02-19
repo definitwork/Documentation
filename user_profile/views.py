@@ -98,7 +98,7 @@ class LoginAPIView(APIView):
             user = authenticate(request, username=username, password=password)
             if user and user.is_active:
                 login(request, user)
-                return Response({'success': 'Пользователь успешно авторизовался', 'username': username})
+                return Response({'success': 'Пользователь успешно авторизовался', 'username': username, 'id': user.id})
             raise serializers.ValidationError("Пользователь не авторизован")
 
 
@@ -131,8 +131,8 @@ class EmailCheckView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-
-class PasswordResetPageView(FormView):
+        
+class PasswordResetView(FormView):
     form_class = ResetPasswordForm
     template_name = 'password_reset_page.html'
 
@@ -179,28 +179,6 @@ class PasswordResetPageView(FormView):
         return  redirect(reverse_lazy('password_reset_error'))
 
 
-class PasswordResetView(APIView):
-    def post(self, request, uidb64, token):
-        serializer = ResetPasswordSerializer(data=request.data)
-        try:
-            uid = force_str(urlsafe_base64_decode(uidb64))
-            user = User.objects.get(pk=uid)
-        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-            user = None
-        if user is not None and default_token_generator.check_token(user, token):
-            if serializer.is_valid(raise_exception=True):
-                password = serializer.validated_data.get("password")
-                password2 = serializer.validated_data.get("password2")
-                if password != password2:
-                    return Response({'error': 'Пароли не совпадают'}, status=status.HTTP_400_BAD_REQUEST)
-                user.set_password(password)
-                user.save()
-                return Response({'success': 'Пароль успешно изменен'}, status=status.HTTP_201_CREATED)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        return Response({'error': 'Ссылка для сброса пароля не действительна'}, status=status.HTTP_400_BAD_REQUEST)
-
-
 class PasswordResetSuccessView(TemplateView):
     template_name = 'password_reset_success.html'
 
@@ -222,3 +200,11 @@ class PasswordResetErrorView(TemplateView):
         context['contacts_names'] = contacts_names
 
         return context
+    
+
+def get_profile_page(request, pk):
+    content = {}
+    user = User.objects.filter(id=pk)
+    content['user'] = user[0]
+    content['referer'] = request.META.get('HTTP_HOST')
+    return render(request, template_name='user_profile_page.html', context=content)

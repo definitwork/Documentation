@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block head %}
+<title>Документация человека</title>
 <link rel="stylesheet" crossorigin href="{% static 'css/home_page.css' %}">
 <script type="module" crossorigin src="{% static 'js/home_page.js' %}"></script>
 {% endblock %}
@@ -15,7 +16,7 @@
         <h1 class="documentation__title">{{documentation.title}}</h1>
         <p class="documentation__about">{{documentation.description}}</p>
       </div>
-      <div class="main__video">
+      <div class="main__video-player">
         <div class="documentation__video">
           <div class="video-player">
             <video src="/api/v1/stream/{{documentation.file}}" class="main-video" poster="media/{{documentation.image}}">
@@ -38,7 +39,7 @@
                     <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
                   </span>
                   <div class="timer">
-                    <span class="current">currentDuration</span> / <span class="duration">totalDuration</span>
+                    <span class="current">00:00</span> / <span class="duration"></span>
                   </div>
                 </div>
                 <div class="controls-right">
@@ -69,7 +70,7 @@
   <section class="board">
     <div class="main__board">
       <div class="main__title">Эксперты в лицах</div>
-      <a href="link" class="main__redirect-to-all">Посмотреть всех</a>
+      <a href="http://{{referer}}/experts/" class="main__redirect-to-all">Посмотреть всех</a>
     </div>
     <div class="board__cards">
       <div class="board__cards_container">
@@ -162,6 +163,12 @@
       </div>
       <div class="cards__button_m active">
         <button class="cards__button_more">Показать еще</button>
+        
+      </div>
+      <div class="return-btn">
+        <button class="return-button">
+          <img src="{% static '/img/arrow_up.svg'%}" alt="" class="logo__img"></img>
+        </button>
       </div>
     </div>
   </section>

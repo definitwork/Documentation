@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Документация человека</title>
     <link type="image/x-icon" href="{% static 'img/favicon.ico' %}" rel="shortcut icon">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -112,7 +111,7 @@
                 <a href="http://{{referer}}/library" class="footer__menu-link">Библиотека</a>
               </li>
               <li class="footer__menu-item">
-                <a href="http://{{referer}}/documentation" class="footer__menu-link">Контакты</a>
+                <a href="http://{{referer}}/contacts" class="footer__menu-link">Контакты</a>
               </li>
               {% for contact_icon in contacts_icons %}
               {% if contact_icon.contact_icon %}

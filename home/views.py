@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from main_page_information.models import AboutResource, SomeFacts
 from copyright_contacts.models import Contacts, Copyright
+from user_profile.models import User
 
 
 def get_home_page(request):
@@ -24,17 +25,34 @@ def get_home_page(request):
     return render(request, template_name='home_page.html', context=content)
 
 def get_contacts(request):
+    content = {}
+    content['contacts'] = Contacts.objects.all()
+    content['referer'] = request.META.get('HTTP_HOST')
 
-    return render(request, template_name='contacts.html')
+    return render(request, template_name='contacts.html', context=content)
 
 def get_experts(request):
+    content = {}
+    content['referer'] = request.META.get('HTTP_HOST')
 
-    return render(request, template_name='experts.html')
+    return render(request, template_name='experts.html', context=content)
 
 def get_documentation(request):
+    content = {}
+    content['referer'] = request.META.get('HTTP_HOST')
+    return render(request, template_name='documentation.html', context=content)
 
-    return render(request, template_name='documentation.html')
+def get_blog(request):
+    content = {}
+    content['referer'] = request.META.get('HTTP_HOST')
+    return render(request, template_name='blog.html', context=content)
 
-def password_reset(request, uidb64, token):
+def get_news(request):
+    content = {}
+    content['referer'] = request.META.get('HTTP_HOST')
+    return render(request, template_name='news.html', context=content)
 
-    return render(request, template_name='password_reset.html')
+def get_library(request):
+    content = {}
+    content['referer'] = request.META.get('HTTP_HOST')
+    return render(request, template_name='library.html', context=content)

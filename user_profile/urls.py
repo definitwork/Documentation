@@ -2,7 +2,7 @@ from django.urls import path
 
 from user_profile.views import UserRegistrationAPIView, LoginAPIView, LogoutAPIView, EmailConfirmationSentView, \
     EmailConfirmationView, EmailConfirmationSuccessView, EmailConfirmationErrorView, PasswordResetView, EmailCheckView, \
-    PasswordResetSuccessView, PasswordResetErrorView, PasswordResetPageView
+    PasswordResetSuccessView, PasswordResetErrorView, get_profile_page
 
 urlpatterns = [
     path('register/', UserRegistrationAPIView.as_view(), name='register'),
@@ -14,8 +14,9 @@ urlpatterns = [
     path('email-confirmation-error/', EmailConfirmationErrorView.as_view(), name='email_confirmation_error'),
 
     path('email-check/', EmailCheckView.as_view(), name='email_check'),
-    path('password-reset-page/<str:uidb64>/<str:token>/', PasswordResetPageView.as_view(), name='password_reset_page'),
-    path('password-reset/<str:uidb64>/<str:token>/', PasswordResetView.as_view(), name='password_reset'),
+    path('password-reset-page/<str:uidb64>/<str:token>/', PasswordResetView.as_view(), name='password_reset_page'),
     path('password-reset-success/', PasswordResetSuccessView.as_view(), name='password_reset_success'),
     path('password-reset-error/', PasswordResetErrorView.as_view(), name='password_reset_error'),
+
+    path('user-profile/<int:pk>/', get_profile_page, name='get_profile_page'),
 ]

@@ -1,30 +1,38 @@
+{% extends "base.html" %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Документация человека</title>
-    <link type="image/x-icon" href="{% static 'img/favicon.ico' %}" rel="shortcut icon">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-    <script type="module" crossorigin src="{% static 'js/contacts.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/null.css' %}">
-    <link rel="stylesheet" crossorigin href="{% static 'css/contacts.css' %}">
-</head>
-<body>
-  <div class="wrapper">
-    <div id="popup" class="popup"></div>
-      <header class="header">
-        <div class="container" id="header"></div>
-      </header>
-      <main class="main">
-        <div class="container">
-          <section id="contacts" class="contacts"></section>
-        </div>
-      </main>
-    <footer class="footer">
-      <div class="container" id="footer"></div>
-    </footer>
-  </div>
-</body>
-</html>
+
+{% block head %}
+<title>Контакты</title>
+<link rel="stylesheet" crossorigin href="{% static 'css/contacts.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <section id="contacts" class="contacts">
+    <h2 class="main__title">Свяжитесь с нами</h2>
+    <div class="contacts__content">
+      <div class="contacts__form">
+        <form onSubmit={handleSubmit(submit)} class="contact_form">
+          {% csrf_token %}
+          <label class='contact-label'>Ваше имя<input class='contact__input' type="text"/><div className='form-error'><div><p className='form-error_message'></p></div></div></label>
+          <label class='contact-label'>Номер телефона<input class='contact__input' type="text" placeholder="+375 (29) ___ - __ - __" /><div className='form-error'><div><p className='form-error_message'></p></div></div></label>
+          <label class='contact-label'>E-mail<input class='contact__input' type="email"/><div className='form-error'><div><p className='form-error_message'></p></div></div></label>
+          <input type="submit" value="Отправить" class="contact__input_submit"></input>
+        </form>
+      </div>
+      <div class="contacts__links">
+        <ul class="contacts__links__list">
+          {% for contact in contacts %}
+          {% if contact.contact_icon %}
+          {{""}}
+          {% else %}
+          <li key={{contact.contact_title}} class="contacts__link">{{contact.contact_title}}</li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

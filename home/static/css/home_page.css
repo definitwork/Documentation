@@ -42,7 +42,7 @@
   text-align: justify;
 }
 
-.main__video {
+.main__video-player {
   display: flex;
   align-items: flex-start;
   max-width: 630px;
@@ -115,7 +115,7 @@
     font-size: 16px;
     line-height: 20.4px;
   }
-  .main__video {
+  .main__video-player {
     padding-top: 10px;
     width: 70%;
   }
@@ -138,7 +138,7 @@
     font-size: 12px;
     line-height: 18.24px;
   }
-  .main__video {
+  .main__video-player {
     padding-top: 25px;
     width: 100%;
     height: 100%;
@@ -154,7 +154,7 @@
 
 .board__cards_container {
   position: relative;
-  height: 1220px;
+  height: 1140px;
   overflow-y: hidden;
 }
 
@@ -173,6 +173,7 @@
   border: 1px solid rgb(121, 121, 121);
   border-radius: 10px;
   width: 380px;
+  height: 521px;
   margin-bottom: 70px;
 }
 
@@ -242,7 +243,8 @@
 }
 
 .cards__button_more:hover, .cards__button_hide:hover {
-  border: none;
+  background: rgb(128, 168, 124);
+  border: 1px solid rgba(255, 255, 255, 0);
 }
 
 .main__board {
@@ -259,16 +261,18 @@
 @media screen and (max-width: 1280px) {
   .board__card {
     width: 360px;
-    margin-bottom: 14px;
+    height: 500px;
+    margin-bottom: 60px;
   }
   .board__cards_container {
-    height: 1900px;
+    height: 1090px;
   }
 }
 @media screen and (max-width: 1200px) {
   .board__card {
     width: 340px;
-    margin-bottom: 14px;
+    height: 480px;
+    margin-bottom: 60px;
   }
   .board__cards_container {
     height: 1035px;
@@ -277,7 +281,8 @@
 @media screen and (max-width: 1140px) {
   .board__card {
     width: 320px;
-    margin-bottom: 14px;
+    height: 460px;
+    margin-bottom: 50px;
   }
   .board__cards_container {
     height: 985px;
@@ -286,19 +291,21 @@
 @media screen and (max-width: 1080px) {
   .board__card {
     width: 300px;
-    margin-bottom: 14px;
+    height: 440px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 930px;
+    height: 940px;
   }
 }
 @media screen and (max-width: 1024px) {
   .board__card {
     width: 280px;
-    margin-bottom: 14px;
+    height: 420px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 880px;
+    height: 900px;
   }
 }
 @media screen and (max-width: 960px) {
@@ -308,109 +315,122 @@
   }
   .board__card {
     width: 260px;
-    margin-bottom: 14px;
+    height: 400px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 820px;
+    height: 855px;
   }
 }
 @media screen and (max-width: 920px) {
   .board__card {
     width: 250px;
-    margin-bottom: 14px;
+    height: 380px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 800px;
+    height: 820px;
   }
 }
 @media screen and (max-width: 880px) {
   .board__card {
     width: 240px;
-    margin-bottom: 14px;
+    height: 370px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 770px;
+    height: 810px;
   }
 }
 @media screen and (max-width: 840px) {
   .board__card {
     width: 230px;
-    margin-bottom: 14px;
+    height: 360px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 750px;
+    height: 800px;
   }
 }
 @media screen and (max-width: 800px) {
+
   .board__card {
     width: 340px;
-    margin-bottom: 14px;
+    height: 480px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 1422px;
+    height: 1532px;
   }
 }
 @media screen and (max-width: 760px) {
   .board__card {
     width: 320px;
-    margin-bottom: 14px;
+    height: 460px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 1360px;
+    height: 1480px;
   }
 }
 @media screen and (max-width: 720px) {
   .board__card {
     width: 300px;
-    margin-bottom: 14px;
+    height: 440px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 1285px;
+    height: 1430px;
   }
 }
 @media screen and (max-width: 680px) {
   .board__card {
     width: 280px;
-    margin-bottom: 14px;
+    height: 420px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 1215px;
+    height: 1360px;
   }
 }
 @media screen and (max-width: 640px) {
   .board__card {
     width: 260px;
-    margin-bottom: 14px;
+    height: 400px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 1140px;
+    height: 1320px;
   }
 }
 @media screen and (max-width: 600px) {
   .board__card {
     width: 240px;
-    margin-bottom: 14px;
+    height: 380px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 1070px;
+    height: 1250px;
   }
 }
 @media screen and (max-width: 560px) {
   .board__card {
     width: 220px;
-    margin-bottom: 14px;
+    height: 360px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 1000px;
+    height: 1180px;
   }
 }
 @media screen and (max-width: 520px) {
   .board__card {
     width: 200px;
-    margin-bottom: 14px;
+    height: 340px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 930px;
+    height: 1130px;
   }
 }
 @media screen and (max-width: 480px) {
@@ -450,10 +470,11 @@
 
   .board__card {
     width: 188px;
-    margin-bottom: 14px;
+    height: 328px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 885px;
+    height: 1085px;
   }
   .actuality__paragraph {
     font-size: 12px;
@@ -472,19 +493,21 @@
 @media screen and (max-width: 440px) {
   .board__card {
     width: 170px;
-    margin-bottom: 14px;
+    height: 310px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 820px;
+    height: 1030px;
   }
 }
 @media screen and (max-width: 412px) {
   .board__card {
     width: 168px;
-    margin-bottom: 14px;
+    height: 308px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
-    height: 990px;
+    height:1020px;
   }
   .board__card__info {
     padding: 2px 0 3px;
@@ -511,38 +534,43 @@
 @media screen and (max-width: 400px) {
   .board__card {
     width: 160px;
-    margin-bottom: 14px;
-  }
-  .board__cards_container {
-    height: 1050px;
-  }
-}
-@media screen and (max-width: 380px) {
-  .board__card {
-    width: 150px;
-    margin-bottom: 14px;
+    height: 300px;
+    margin-bottom: 40px;
   }
   .board__cards_container {
     height: 1000px;
   }
 }
+@media screen and (max-width: 380px) {
+  .board__card {
+    width: 150px;
+    height: 290px;
+    margin-bottom: 30px;
+  }
+  .board__cards_container {
+    height: 950px;
+  }
+}
+
 @media screen and (max-width: 360px) {
   .board__card {
     width: 140px;
-    margin-bottom: 14px;
+    height: 280px;
+    margin-bottom: 30px;
   }
   .board__cards_container {
-    height: 1050px;
+    height: 920px;
   }
 }
 
 @media screen and (max-width: 340px) {
   .board__card {
     width: 120px;
-    margin-bottom: 14px;
+    height: 220px;
+    margin-bottom: 30px;
   }
   .board__cards_container {
-    height: 970px;
+    height: 740px;
     font-size: 12px;
   }
 }
@@ -932,6 +960,37 @@
     width: 100%;
   }
 }
+.return-btn{
+  display: flex;
+  position: absolute;
+  right: 120px;
+  bottom: 300px
+}
+
+.return-button{
+  padding: 12px;
+  border-radius: 50%;
+  background: none;
+  border: 1px solid lightgrey;
+  transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 800px) {
+  .return-btn{
+    display: none;
+  }
+}
+.return-button:hover{
+  border: 1px solid black;
+}
+
+@media screen and (max-width: 1280px) {
+  .return-btn{
+    right: 20px;
+  }
+}
+
+
 @font-face {
   font-family: "Manrope Regular";
   src: url(../font/Manrope/static/Manrope-Regular.ttf);

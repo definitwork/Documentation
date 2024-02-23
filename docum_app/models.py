@@ -31,6 +31,9 @@ class CategoryContent(models.Model):
                                             verbose_name='Связанные категории')
     content_title = models.CharField(max_length=255, verbose_name='Заголовок статьи')
     text = models.TextField(verbose_name='Текст статьи')
+    video = models.FileField(upload_to='video/category_content', verbose_name='Видео из статьи', blank=True, null=True)
+    article_image = models.ImageField(upload_to='img/category_content', verbose_name='Картинка из статьи', blank=True,
+                                      null=True)
     is_published = models.BooleanField(default=False, verbose_name='Опубликована ли статья')
     access_level = models.PositiveIntegerField(choices=ACCESS_LEVEL_CHOICES, default=0, verbose_name='Кто видит статью')
     price = models.DecimalField(decimal_places=2, max_digits=6, default=0, verbose_name='Цена')
@@ -54,6 +57,7 @@ class Book(models.Model):
     doc_categories = models.ManyToManyField('DocCategory', related_name='related_doc_categories',
                                             verbose_name='Связанные категории')
     book_title = models.CharField(max_length=255, verbose_name='Название книги')
+    author = models.CharField(max_length=255, verbose_name='Автор книги')
     description = models.TextField(verbose_name='Описание книги', null=True, blank=True)
     is_published = models.BooleanField(default=False, verbose_name='Доступна ли книга')
     access_level = models.PositiveIntegerField(choices=ACCESS_LEVEL_CHOICES, default=0,
@@ -77,13 +81,13 @@ class UserPaidContent(models.Model):
                                    blank=True)
     creation_date = models.DateField(auto_now_add=True, verbose_name='Дата формирование заказа')
     is_paid = models.BooleanField(default=False, verbose_name='Оплачено ли')
-    # как будет считаться общая цена при скидке
-    # фиксация времени оплаты и общей стоимости на день оплаты
 
+    # пока не ясно как будет считаться общая цена при скидке
+    # фиксация времени оплаты и общей стоимости на день оплаты
 
     class Meta:
         verbose_name_plural = 'Оплаченный контент пользователя'
         verbose_name = 'Оплаченный контент пользователя'
 
     def __str__(self):
-        return f'Оплата {self.user} - №{self.id}'
+        return f'Оплата {self.user} - Заказ ID №: {self.id}'

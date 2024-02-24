@@ -20,12 +20,13 @@ class CategoryContentAPIView(generics.ListAPIView):
 
 
 class BookAPIView(generics.ListAPIView):
-    """ Выводим  """
+    """ Выводим все книги """
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
 
+# пока не ясно, что и как продавать
 class UserPaidContentAPIView(generics.ListAPIView):
-    """ Выводими """
+    """ Выводим все оформленные пакеты подписок """
     queryset = UserPaidContent.objects.all()
     serializer_class = UserPaidContentSerializer

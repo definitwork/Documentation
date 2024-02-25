@@ -1,8 +1,4 @@
 from rest_framework import generics
-from rest_framework.pagination import LimitOffsetPagination
-from rest_framework import filters
-from django_filters.rest_framework import DjangoFilterBackend
-
 from .models import DocCategory, CategoryContent, Book, UserPaidContent
 from .serializers import DocCategorySerializer, CategoryContentSerializer, BookSerializer, UserPaidContentSerializer
 
@@ -19,8 +15,20 @@ class CategoryContentAPIView(generics.ListAPIView):
     serializer_class = CategoryContentSerializer
 
 
+class OneCategoryContentAPIView(generics.RetrieveAPIView):
+    """ Выводим одну статью из раздела документации """
+    queryset = CategoryContent.objects.all()
+    serializer_class = CategoryContentSerializer
+
+
 class BookAPIView(generics.ListAPIView):
     """ Выводим все книги """
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+
+class OneBookAPIView(generics.RetrieveAPIView):
+    """ Выводим одну книгу """
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 

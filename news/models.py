@@ -18,11 +18,11 @@ class News(models.Model):
     news_body = models.CharField(verbose_name='Содержание', max_length=255)  # Сама новость, ее содержание
     news_sections = models.ManyToManyField('NewsSection', related_name='news_section')  # Новостные секции
     news_img = models.ImageField(verbose_name='Картинка для новости',
-                                 upload_to='./new/img', blank=True, null=True)  # Картинка для новости
+                                 upload_to='img/news', blank=True, null=True)  # Картинка для новости
     news_video = models.FileField(verbose_name='Видео для новости',
-                                  upload_to='./new/vedeo', blank=True, null=True)  # Видео для новости
+                                  upload_to='video/news', blank=True, null=True)  # Видео для новости
     cover_img = models.ImageField(verbose_name='Картинка, покрывающая видео',
-                                  upload_to='./new/vedeo/img', blank=True, null=True)  # Картинка, покрывающая видео
+                                  upload_to='video/news/img', blank=True, null=True)  # Картинка, покрывающая видео
     date_published = models.DateTimeField(verbose_name='Дата публикации новости',
                                           auto_now_add=True)  # Дата публикации новости
 

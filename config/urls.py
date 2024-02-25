@@ -49,6 +49,7 @@ urlpatterns = [
     path('api/v1/stream/', include('streaming.urls')),
     path('api/v1/news/', include('news.urls')),
     path('api/v1/blog/', include('blog.urls')),
+    path('api/v1/docum/', include('docum_app.urls')),
     path('', include('home.urls')),
 ]
 

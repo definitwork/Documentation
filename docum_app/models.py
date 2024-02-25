@@ -1,5 +1,4 @@
 from django.db import models
-from user_profile.models import Profile
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -27,7 +26,7 @@ class CategoryContent(models.Model):
         2: "Who is paid",
     }
 
-    doc_categories = models.ManyToManyField('DocCategory', related_name='related_doc_categories',
+    doc_categories = models.ManyToManyField('DocCategory',
                                             verbose_name='Связанные категории')
     content_title = models.CharField(max_length=255, verbose_name='Заголовок статьи')
     text = models.TextField(verbose_name='Текст статьи')
@@ -54,7 +53,7 @@ class Book(models.Model):
         2: "Who is paid",
     }
 
-    doc_categories = models.ManyToManyField('DocCategory', related_name='related_doc_categories',
+    doc_categories = models.ManyToManyField('DocCategory',
                                             verbose_name='Связанные категории')
     book_title = models.CharField(max_length=255, verbose_name='Название книги')
     author = models.CharField(max_length=255, verbose_name='Автор книги')
@@ -76,8 +75,8 @@ class Book(models.Model):
 class UserPaidContent(models.Model):
     user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
     category_contents = models.ManyToManyField('CategoryContent', related_name='related_category_contents',
-                                               verbose_name='Оплачиваемые статьи', null=True, blank=True)
-    books = models.ManyToManyField('Book', related_name='related_books', verbose_name='Оплаченные книги', null=True,
+                                               verbose_name='Оплачиваемые статьи', blank=True)
+    books = models.ManyToManyField('Book', related_name='related_books', verbose_name='Оплаченные книги',
                                    blank=True)
     creation_date = models.DateField(auto_now_add=True, verbose_name='Дата формирование заказа')
     is_paid = models.BooleanField(default=False, verbose_name='Оплачено ли')

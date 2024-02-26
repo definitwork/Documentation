@@ -17,3 +17,7 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
         fields = '__all__'
+
+class ResetPasswordForm(forms.Form):
+    password = forms.CharField(min_length=8, widget=forms.PasswordInput(attrs={"class":"reset-password__input"}), label="Новый пароль")
+    password2 = forms.CharField(min_length=8, widget=forms.PasswordInput(attrs={"class":"reset-password__input"}), label="Повторите пароль")

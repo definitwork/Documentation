@@ -1,30 +1,467 @@
+{% extends "base.html" %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Документация</title>
-    <link type="image/x-icon" href="{% static 'img/favicon.ico' %}" rel="shortcut icon">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-    <script type="module" crossorigin src={% static 'js/documentation.js' %}></script>
-    <link rel="stylesheet" href="{% static 'css/null.css' %}">
-    <link rel="stylesheet" crossorigin href="{% static 'css/documentation.css' %}">
-</head>
-<body>
-  <div class="wrapper">
-    <div id="popup" class="popup"></div>
-      <header class="header">
-        <div class="container" id="header"></div>
-      </header>
-      <main class="main">
-        <div class="container">
-          <section id="documentations" class="documentations"></section>
+
+{% block head %}
+<title>Документация</title>
+<link rel="stylesheet" crossorigin href="{% static 'css/documentation.css' %}">
+<link rel="stylesheet" crossorigin href="{% static 'css/home_page.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <section id="documentations" class="documentations">
+    <div class="search_doc">
+      <input class='search_doc__input' type="search" name="search__doc" id="search__doc" placeholder='Поиск' />
+    </div>
+    <nav class="category__articles">
+      <ul class="categories__list">
+        <li class="category__list__item">Тело</li>
+        <li class="category__list__item">Душа</li>
+        <li class="category__list__item">Дух</li>
+        <li class="category__list__item">Сознание</li>
+        <li class="category__list__item">Общество</li>
+        <li class="category__list__item">Бизнес</li>
+        <li class="category__list__item">Как учиться</li>
+        <li class="category__list__item">Что я знаю о себе</li>
+      </ul>
+    </nav>
+    <nav class="documentations__articles__under-header">
+      <div class="articles__under-header__nav">
+        <div class="articles__under-header__categories">Категории
+          <svg class="svg-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M133.404444 349.108148l365.131852 352.616296c1.232593 1.137778 2.56 2.085926 3.982222 2.939259 7.205926 4.361481 16.592593 3.508148 22.945185-2.56l365.131852-352.616296c7.68-7.395556 7.774815-19.816296 0-27.306667-7.395556-7.205926-19.342222-6.826667-26.737778 0.379259l-351.762963 339.626667c0 0 0 0-0.094815 0L160.047407 322.180741c-7.395556-7.205926-19.342222-7.49037-26.737778-0.379259C125.62963 329.291852 125.724444 341.712593 133.404444 349.108148z"  /></svg>
         </div>
-      </main>
-    <footer class="footer">
-      <div class="container" id="footer"></div>
-    </footer>
-  </div>
-</body>
-</html>
+      </div>
+      <div class="articles__under-header__search">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.0313 20.7896C20.4913 21.2496 21.2013 20.5396 20.7413 20.0896L16.9913 16.3296C18.3068 14.8741 19.0339 12.9814 19.0313 11.0196C19.0313 6.62957 15.4613 3.05957 11.0713 3.05957C6.68133 3.05957 3.11133 6.62957 3.11133 11.0196C3.11133 15.4096 6.68133 18.9796 11.0713 18.9796C13.0513 18.9796 14.8813 18.2496 16.2813 17.0396L20.0313 20.7896ZM4.11033 11.0196C4.11033 7.17957 7.24033 4.05957 11.0703 4.05957C14.9103 4.05957 18.0303 7.17957 18.0303 11.0196C18.0303 14.8596 14.9103 17.9796 11.0703 17.9796C7.24033 17.9796 4.11033 14.8596 4.11033 11.0196Z" fill="white"/>
+          <path d="M20.0313 20.7896C20.4913 21.2496 21.2013 20.5396 20.7413 20.0896L16.9913 16.3296C18.3068 14.8741 19.0339 12.9814 19.0313 11.0196C19.0313 6.62957 15.4613 3.05957 11.0713 3.05957C6.68133 3.05957 3.11133 6.62957 3.11133 11.0196C3.11133 15.4096 6.68133 18.9796 11.0713 18.9796C13.0513 18.9796 14.8813 18.2496 16.2813 17.0396L20.0313 20.7896ZM4.11033 11.0196C4.11033 7.17957 7.24033 4.05957 11.0703 4.05957C14.9103 4.05957 18.0303 7.17957 18.0303 11.0196C18.0303 14.8596 14.9103 17.9796 11.0703 17.9796C7.24033 17.9796 4.11033 14.8596 4.11033 11.0196Z" fill="black" fill-opacity="0.2"/>
+        </svg>
+      </div>
+      <div class="search_doc__under-header active">
+        <input class='search_doc__input__underheader' type="search" name="search__doc" id="search__doc" placeholder='Поиск' />
+      </div>
+      <ul class="articles__list__under-header">
+        <li class="articles__list__under-header__item">Тело</li>
+        <li class="articles__list__under-header__item">Душа</li>
+        <li class="articles__list__under-header__item">Дух</li>
+        <li class="articles__list__under-header__item">Сознание</li>
+        <li class="articles__list__under-header__item">Общество</li>
+        <li class="articles__list__under-header__item">Бизнес</li>
+        <li class="articles__list__under-header__item">Как учиться</li>
+        <li class="articles__list__under-header__item">Что я знаю о себе</li>
+      </ul>
+    </nav>
+    <ul class="about-category__list">
+      <li class="about-category__list__item">
+        <div class="about-category__content">
+          <div class="about-category__title">Тело</div>
+          <div class="about-category__info">
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="main__video-player">
+              <div class="documentation__video">
+                <div class="video-player">
+                  <video src="" class="main-video" poster="{% static 'img/body.jpg' %}">
+                    <source src="" type="video/mp4" />
+                  </video>
+                  <div class="progressAreaTime">progressAreaTime</div>
+                  <div class="controls active">
+                    <div class="progress-area">
+                      <div class="progress-bar">
+                        <span></span>
+                      </div>
+                    </div>
+                    <div class="controls-list">
+                      <div class="controls-left">
+                        <span class="icon">
+                          <i class="material-icons icon__play">play_arrow</i>
+                        </span>
+                        <span class="icon">
+                          <i class="material-icons icon__volume">volume_up</i>
+                          <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                        </span>
+                        <div class="timer">
+                          <span class="current">00:00</span> / <span class="duration"></span>
+                        </div>
+                      </div>
+                      <div class="controls-right">
+                        <span class="icon">
+                          <i class="material-icons icon__fullscreen">fullscreen</i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-category__button">
+            <button type="button" class='about-category__btn'>Перейти к теме</button>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content">
+          <div class="about-category__title">Душа</div>
+          <div class="about-category__info">
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="main__video-player">
+              <div class="documentation__video">
+                <div class="video-player">
+                  <video src="" class="main-video" poster="{% static 'img/soul.jpg' %}">
+                    <source src="" type="video/mp4" />
+                  </video>
+                  <div class="progressAreaTime">progressAreaTime</div>
+                  <div class="controls active">
+                    <div class="progress-area">
+                      <div class="progress-bar">
+                        <span></span>
+                      </div>
+                    </div>
+                    <div class="controls-list">
+                      <div class="controls-left">
+                        <span class="icon">
+                          <i class="material-icons icon__play">play_arrow</i>
+                        </span>
+                        <span class="icon">
+                          <i class="material-icons icon__volume">volume_up</i>
+                          <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                        </span>
+                        <div class="timer">
+                          <span class="current">00:00</span> / <span class="duration"></span>
+                        </div>
+                      </div>
+                      <div class="controls-right">
+                        <span class="icon">
+                          <i class="material-icons icon__fullscreen">fullscreen</i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-category__button">
+            <button type="button" class='about-category__btn'>Перейти к теме</button>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content">
+          <div class="about-category__title">Дух</div>
+          <div class="about-category__info">
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="main__video-player">
+              <div class="documentation__video">
+                <div class="video-player">
+                  <video src="" class="main-video" poster="{% static 'img/spirit.jpg' %}">
+                    <source src="" type="video/mp4" />
+                  </video>
+                  <div class="progressAreaTime">progressAreaTime</div>
+                  <div class="controls active">
+                    <div class="progress-area">
+                      <div class="progress-bar">
+                        <span></span>
+                      </div>
+                    </div>
+                    <div class="controls-list">
+                      <div class="controls-left">
+                        <span class="icon">
+                          <i class="material-icons icon__play">play_arrow</i>
+                        </span>
+                        <span class="icon">
+                          <i class="material-icons icon__volume">volume_up</i>
+                          <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                        </span>
+                        <div class="timer">
+                          <span class="current">00:00</span> / <span class="duration"></span>
+                        </div>
+                      </div>
+                      <div class="controls-right">
+                        <span class="icon">
+                          <i class="material-icons icon__fullscreen">fullscreen</i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-category__button">
+            <button type="button" class='about-category__btn'>Перейти к теме</button>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content">
+          <div class="about-category__title">Сознание</div>
+          <div class="about-category__info">
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="main__video-player">
+              <div class="documentation__video">
+                <div class="video-player">
+                  <video src="" class="main-video" poster="{% static 'img/consciousness.png' %}">
+                    <source src="" type="video/mp4" />
+                  </video>
+                  <div class="progressAreaTime">progressAreaTime</div>
+                  <div class="controls active">
+                    <div class="progress-area">
+                      <div class="progress-bar">
+                        <span></span>
+                      </div>
+                    </div>
+                    <div class="controls-list">
+                      <div class="controls-left">
+                        <span class="icon">
+                          <i class="material-icons icon__play">play_arrow</i>
+                        </span>
+                        <span class="icon">
+                          <i class="material-icons icon__volume">volume_up</i>
+                          <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                        </span>
+                        <div class="timer">
+                          <span class="current">00:00</span> / <span class="duration"></span>
+                        </div>
+                      </div>
+                      <div class="controls-right">
+                        <span class="icon">
+                          <i class="material-icons icon__fullscreen">fullscreen</i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-category__button">
+            <button type="button" class='about-category__btn'>Перейти к теме</button>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content">
+          <div class="about-category__title">Общество</div>
+          <div class="about-category__info">
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="main__video-player">
+              <div class="documentation__video">
+                <div class="video-player">
+                  <video src="" class="main-video" poster="{% static 'img/society.jpg' %}">
+                    <source src="" type="video/mp4" />
+                  </video>
+                  <div class="progressAreaTime">progressAreaTime</div>
+                  <div class="controls active">
+                    <div class="progress-area">
+                      <div class="progress-bar">
+                        <span></span>
+                      </div>
+                    </div>
+                    <div class="controls-list">
+                      <div class="controls-left">
+                        <span class="icon">
+                          <i class="material-icons icon__play">play_arrow</i>
+                        </span>
+                        <span class="icon">
+                          <i class="material-icons icon__volume">volume_up</i>
+                          <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                        </span>
+                        <div class="timer">
+                          <span class="current">00:00</span> / <span class="duration"></span>
+                        </div>
+                      </div>
+                      <div class="controls-right">
+                        <span class="icon">
+                          <i class="material-icons icon__fullscreen">fullscreen</i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-category__button">
+            <button type="button" class='about-category__btn'>Перейти к теме</button>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content">
+          <div class="about-category__title">Бизнес</div>
+          <div class="about-category__info">
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="main__video-player">
+              <div class="documentation__video">
+                <div class="video-player">
+                  <video src="" class="main-video" poster="{% static 'img/business.jpg' %}">
+                    <source src="" type="video/mp4" />
+                  </video>
+                  <div class="progressAreaTime">progressAreaTime</div>
+                  <div class="controls active">
+                    <div class="progress-area">
+                      <div class="progress-bar">
+                        <span></span>
+                      </div>
+                    </div>
+                    <div class="controls-list">
+                      <div class="controls-left">
+                        <span class="icon">
+                          <i class="material-icons icon__play">play_arrow</i>
+                        </span>
+                        <span class="icon">
+                          <i class="material-icons icon__volume">volume_up</i>
+                          <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                        </span>
+                        <div class="timer">
+                          <span class="current">00:00</span> / <span class="duration"></span>
+                        </div>
+                      </div>
+                      <div class="controls-right">
+                        <span class="icon">
+                          <i class="material-icons icon__fullscreen">fullscreen</i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-category__button">
+            <button type="button" class='about-category__btn'>Перейти к теме</button>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content">
+          <div class="about-category__title">Как учиться</div>
+          <div class="about-category__info">
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="main__video-player">
+              <div class="documentation__video">
+                <div class="video-player">
+                  <video src="" class="main-video" poster="{% static 'img/studies.jpg' %}">
+                    <source src="" type="video/mp4" />
+                  </video>
+                  <div class="progressAreaTime">progressAreaTime</div>
+                  <div class="controls active">
+                    <div class="progress-area">
+                      <div class="progress-bar">
+                        <span></span>
+                      </div>
+                    </div>
+                    <div class="controls-list">
+                      <div class="controls-left">
+                        <span class="icon">
+                          <i class="material-icons icon__play">play_arrow</i>
+                        </span>
+                        <span class="icon">
+                          <i class="material-icons icon__volume">volume_up</i>
+                          <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                        </span>
+                        <div class="timer">
+                          <span class="current">00:00</span> / <span class="duration"></span>
+                        </div>
+                      </div>
+                      <div class="controls-right">
+                        <span class="icon">
+                          <i class="material-icons icon__fullscreen">fullscreen</i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-category__button">
+            <button type="button" class='about-category__btn'>Перейти к теме</button>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content">
+          <div class="about-category__title">Что я знаю о себе</div>
+          <div class="about-category__info">
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="main__video-player">
+              <div class="documentation__video">
+                <div class="video-player">
+                  <video src="" class="main-video" poster="{% static 'img/knowledge.jpg' %}">
+                    <source src="" type="video/mp4" />
+                  </video>
+                  <div class="progressAreaTime">progressAreaTime</div>
+                  <div class="controls active">
+                    <div class="progress-area">
+                      <div class="progress-bar">
+                        <span></span>
+                      </div>
+                    </div>
+                    <div class="controls-list">
+                      <div class="controls-left">
+                        <span class="icon">
+                          <i class="material-icons icon__play">play_arrow</i>
+                        </span>
+                        <span class="icon">
+                          <i class="material-icons icon__volume">volume_up</i>
+                          <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                        </span>
+                        <div class="timer">
+                          <span class="current">00:00</span> / <span class="duration"></span>
+                        </div>
+                      </div>
+                      <div class="controls-right">
+                        <span class="icon">
+                          <i class="material-icons icon__fullscreen">fullscreen</i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-category__button">
+            <button type="button" class='about-category__btn'>Перейти к теме</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+</div>
+{% endblock %}

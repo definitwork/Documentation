@@ -1,0 +1,533 @@
+.footer {
+  padding: 25px 20px;
+  margin-top: 75px;
+  background: rgba(216, 228, 214, 0.3);
+}
+.footer .footer__container {
+  max-width: 854px;
+  margin: 0 auto;
+}
+.footer .footer__menu {
+  padding-bottom: 7px;
+  display: flex;
+  justify-content: space-between;
+}
+.footer .footer__copy {
+  text-align: center;
+}
+.footer .footer__copy_item {
+  margin-bottom: 5px;
+}
+.footer .footer__menu-item {
+  margin-bottom: 10px;
+}
+.footer .footer__menu-links {
+  display: flex;
+  gap: 10px;
+}
+.footer .footer__menu-link_jpg {
+  height: 20px;
+  width: max-content;
+}
+.footer .footer__line {
+  border: 1px solid rgb(217, 217, 217);
+  margin-bottom: 16px;
+}
+.footer .footer__menu-item.support {
+  display: none;
+}
+.footer .footer__menu-list.support {
+  display: block;
+}
+.footer .footer__menu-item.small__library {
+  display: none;
+}
+.footer .footer__menu-item.big__library {
+  display: block;
+}
+
+@media screen and (max-width: 480px) {
+  .footer .logo img {
+    width: 50px;
+    height: 50px;
+    margin-left: 0;
+  }
+  .footer .footer__menu-link {
+    font-size: 10px;
+  }
+  .footer .footer__copy {
+    font-size: 10px;
+  }
+  .footer .footer__menu-item.support {
+    display: block;
+  }
+  .footer .footer__menu-list.support {
+    display: none;
+  }
+  .footer .footer__menu-item.small__library {
+    display: block;
+  }
+  .footer .footer__menu-item.big__library {
+    display: none;
+  }
+}
+.header {
+  position: relative;
+  background: rgba(216, 228, 214, 0.3);
+}
+.header .header__inner {
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header .logo__img {
+  width: 80px;
+  height: 80px;
+}
+.header .menu__list {
+  display: flex;
+  gap: 20px;
+}
+.header .header__button {
+  position: relative;
+}
+.header .menu__list__footer {
+  display: none;
+}
+.header .header__burger:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .header .logo__img {
+    width: 35px;
+    height: 35px;
+  }
+  .header .header__inner {
+    justify-content: stretch;
+  }
+  .header .logo {
+    margin: 0 auto;
+    padding-right: 14%;
+  }
+  .header .menu {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+  .header .menu .menu__list {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    height: 100%;
+    width: max-content;
+    padding: 70px 150px 20px 20px;
+    background: #85A382;
+  }
+  .header .menu.side.active {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0);
+    z-index: 1000;
+    overflow: auto;
+    color: azure;
+  }
+
+  .header .menu.side.active a{
+    color: azure;
+  }
+
+  .header .menu__list__footer {
+    display: flex;
+    flex-direction: column;
+  }
+  .header .menu__list-item_footer {
+    margin-top: auto;
+    margin-bottom: 100px;
+  }
+  .header .menu__list__footer-links {
+    display: flex;
+    gap: 10px;
+  }
+  .header .menu__list__footer-link_jpg {
+    height: 20px;
+    width: max-content;
+  }
+  .header .menu__list__footer-item {
+    padding-top: 15px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .header .header__inner {
+    justify-content: initial;
+  }
+  .header .logo__img {
+    height: 35px;
+    width: 35px;
+    margin-left: 50%;
+  }
+  .header .logo {
+    padding-right: 0;
+  }
+  .header .header__button {
+    margin-left: auto;
+  }
+}
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: transform 0.2s;
+}
+
+.close:hover {
+  transform: scale(1.3, 1.3);
+  cursor: pointer;
+}
+
+.popup__log-in.active, .popup__register.active, .popup__recovery.active, .popup__send.active {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  opacity: 1;
+}
+
+.popup__send.active {
+  width: 100%;
+  height: max-content;
+  font-size: 20px;
+}
+
+.popup__send p{
+  padding-bottom: 20px;
+  text-align: justify;
+}
+
+.popup__log-in, .popup__register, .popup__recovery, .popup__send {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.popup__container {
+  position: relative;
+  display: flex;
+  width: 550px;
+  padding: 60px 75px;
+  background: white;
+  border-radius: 10px;
+}
+
+.form-label {
+  position: relative;
+  width: 100%;
+}
+
+.popup__input {
+  padding: 10px;
+  font-family: "Manrope Regular";
+  border: 1px solid rgba(0, 0, 0, 0.37);
+  border-radius: 5px;
+  margin-bottom: 15px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.popup__input:focus {
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.popup__input_green {
+  margin-top: 10px;
+  padding: 10px;
+  font-family: "Manrope Regular";
+  border-radius: 5px;
+  cursor: pointer;
+  background: linear-gradient(180deg, rgb(128, 168, 124) 0%, rgb(98, 140, 94) 67%);
+}
+
+.popup__input_green:hover {
+  background: rgb(128, 168, 124);
+}
+
+.login-using, .no-account-yet {
+  font-family: "Manrope Regular";
+  padding-top: 15px;
+  text-align: center;
+}
+
+.forgot-password {
+  padding-top: 15px;
+  text-align: center;
+}
+
+.forgot-password_btn {
+  background: none;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.popup__button {
+  padding: 10px;
+  font-family: "Manrope Regular";
+  border-radius: 5px;
+  margin-top: 20px;
+  background: rgb(231, 231, 231);
+  cursor: pointer;
+}
+
+.popup__button:hover {
+  background: rgb(134, 134, 134);
+  color: azure;
+}
+
+.popup_links {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+}
+
+.popup_link {
+  padding: 5px 30px;
+  border: 1px solid black;
+  border-radius: 5px;
+  transition: border-radius 0.2s;
+}
+
+.popup_link:hover {
+  border-radius: 50%;
+}
+
+.popup__check {
+  display: flex;
+  align-items: center;
+  padding: 8px 0 10px;
+  font-family: "Manrope Regular";
+  font-size: 12px;
+}
+
+.popup__check_text {
+  padding-left: 10px;
+}
+
+.popup__check_text a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.error {
+  position: absolute;
+  right: 80px;
+  bottom: 20px;
+  height: 0;
+  width: 0;
+  background-color: brown;
+  color: azure;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.error.active {
+  position: absolute;
+  right: 80px;
+  bottom: 20px;
+  height: 30px;
+  width: 443px;
+  background-color: brown;
+  color: azure;
+  overflow: auto;
+  opacity: 1;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.form-error {
+  position: absolute;
+  font-size: 10px;
+  color: red;
+  bottom: 5px;
+  left: 10px;
+}
+
+.popup-recaptcha {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 480px) {
+  .popup__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 30px;
+    height: 100vh;
+    background: white;
+  }
+  .close {
+    top: 50px;
+  }
+}
+.header__burger {
+  position: absolute;
+  overflow: hidden;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+.header__burger .header__burger:hover {
+  background: rgba(144, 238, 144, 0.377);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .header__burger {
+    display: block;
+    position: inherit;
+    overflow: auto;
+    opacity: 1;
+    height: max-content;
+    width: max-content;
+    margin-right: auto;
+  }
+}
+.header__button .button__log-in.active {
+  background: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px 15px;
+  overflow: auto;
+  opacity: 1;
+  height: auto;
+  width: auto;
+}
+.header__button .button__inner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.header__button .header_log-in {
+  font-size: 16px;
+}
+.header__button .header__user.active {
+  height: 50px;
+  width: 50px;
+  background: rgb(255, 255, 255);
+  border-radius: 50%;
+  font-family: "Manrope Regular";
+  font-size: larger;
+  font-weight: 700;
+  overflow: auto;
+  opacity: 1;
+  border: 1px solid rgba(144, 238, 144, 0.658);
+}
+.header__button .header__logout, .header__button .button__log-in, .header__button .header__user {
+  overflow: hidden;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+.header__button .button__log-in:hover, .header__button .header__user:hover {
+  background: rgba(177, 168, 168, 0.171);
+}
+.header__button .header__logout.active {
+  position: absolute;
+  padding: 15px;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid grey;
+  top: 60px;
+  right: 0;
+  overflow: auto;
+  opacity: 1;
+  height: auto;
+  width: auto;
+}
+.header__button .header__logout__btn {
+  background: rgba(144, 238, 144, 0.425);
+  padding: 10px 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.header__button .header__logout__btn:hover {
+  background: rgba(178, 238, 144, 0.425);
+}
+
+@media screen and (max-width: 800px) {
+  .header__button .button__log-in.active {
+    border-radius: 10px;
+    padding: 7px 8px 8px;
+  }
+  .header__button .user-svg {
+    width: 15px;
+    height: 15px;
+  }
+  .header__button .header_log-in {
+    font-size: 12px;
+  }
+  .header__button .header__button {
+    margin-left: auto;
+  }
+}
+@font-face {
+  font-family: "Manrope Regular";
+  src: url(../font/Manrope/static/Manrope-Regular.ttf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Myra 4f Caps Light";
+  src: url(../font/Myra4FCaps/myra4fcaps_light.ttf);
+  font-weight: 300;
+}
+
+body{
+  width: 100%;
+  height: 100vh;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+  font-family: "Manrope Regular";
+}
+
+.main{
+  flex: 1 1 auto;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.popup {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.popup.active {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  height: 100vh;
+  width: 100%;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.685);
+}

@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+<title>Новости</title>
+<link rel="stylesheet" crossorigin href="{% static 'css/news.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <section id="news" class="news">
+    <div class="search_doc">
+      <input class='search_doc__input' type="search" name="search__doc" id="search__doc" placeholder='Поиск' />
+    </div>
+    <nav class="news__articles">
+      <ul class="articles__list">
+        <li class="articles__list__item">ПОЛИТИКА</li>
+        <li class="articles__list__item">ЭКОНОМИКА</li>
+        <li class="articles__list__item">ОБЩЕСТВО</li>
+        <li class="articles__list__item active">ВСЕ НОВОСТИ</li>
+        <li class="articles__list__item">ПРОИСШЕСТВИЯ</li>
+        <li class="articles__list__item">ЛЮДИ</li>
+        <li class="articles__list__item">ТЕХНОЛОГИИ</li>
+      </ul>
+    </nav>
+    <nav class="news__articles__under-header">
+      <div class="articles__under-header__nav">
+        <div class="articles__under-header__categories">Все новости
+          <svg class="svg-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M133.404444 349.108148l365.131852 352.616296c1.232593 1.137778 2.56 2.085926 3.982222 2.939259 7.205926 4.361481 16.592593 3.508148 22.945185-2.56l365.131852-352.616296c7.68-7.395556 7.774815-19.816296 0-27.306667-7.395556-7.205926-19.342222-6.826667-26.737778 0.379259l-351.762963 339.626667c0 0 0 0-0.094815 0L160.047407 322.180741c-7.395556-7.205926-19.342222-7.49037-26.737778-0.379259C125.62963 329.291852 125.724444 341.712593 133.404444 349.108148z"  /></svg>
+        </div>
+      </div>
+      <div class="articles__under-header__search">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.0313 20.7896C20.4913 21.2496 21.2013 20.5396 20.7413 20.0896L16.9913 16.3296C18.3068 14.8741 19.0339 12.9814 19.0313 11.0196C19.0313 6.62957 15.4613 3.05957 11.0713 3.05957C6.68133 3.05957 3.11133 6.62957 3.11133 11.0196C3.11133 15.4096 6.68133 18.9796 11.0713 18.9796C13.0513 18.9796 14.8813 18.2496 16.2813 17.0396L20.0313 20.7896ZM4.11033 11.0196C4.11033 7.17957 7.24033 4.05957 11.0703 4.05957C14.9103 4.05957 18.0303 7.17957 18.0303 11.0196C18.0303 14.8596 14.9103 17.9796 11.0703 17.9796C7.24033 17.9796 4.11033 14.8596 4.11033 11.0196Z" fill="white"/>
+          <path d="M20.0313 20.7896C20.4913 21.2496 21.2013 20.5396 20.7413 20.0896L16.9913 16.3296C18.3068 14.8741 19.0339 12.9814 19.0313 11.0196C19.0313 6.62957 15.4613 3.05957 11.0713 3.05957C6.68133 3.05957 3.11133 6.62957 3.11133 11.0196C3.11133 15.4096 6.68133 18.9796 11.0713 18.9796C13.0513 18.9796 14.8813 18.2496 16.2813 17.0396L20.0313 20.7896ZM4.11033 11.0196C4.11033 7.17957 7.24033 4.05957 11.0703 4.05957C14.9103 4.05957 18.0303 7.17957 18.0303 11.0196C18.0303 14.8596 14.9103 17.9796 11.0703 17.9796C7.24033 17.9796 4.11033 14.8596 4.11033 11.0196Z" fill="black" fill-opacity="0.2"/>
+        </svg>
+      </div>
+      <div class="search_doc__under-header active">
+        <input class='search_doc__input__underheader' type="search" name="search__doc" id="search__doc" placeholder='Поиск' />
+      </div>
+      <ul class="articles__list__under-header">
+        <li class="articles__list__under-header__item">Политика</li>
+        <li class="articles__list__under-header__item">Экономика</li>
+        <li class="articles__list__under-header__item">Общество</li>
+        <li class="articles__list__under-header__item active">Все новости</li>
+        <li class="articles__list__under-header__item">Происшествия</li>
+        <li class="articles__list__under-header__item">Люди</li>
+        <li class="articles__list__under-header__item">Технологии</li>
+      </ul>
+    </nav>
+    <div class="articles__content">
+      <div class="news__big-articles">
+        <div class="news__main-article">
+          <div class="main-article__item">
+            <div class="main-article__media">
+              <img class="main-article__media-img" src="{% static 'img/belas.jpg' %}" alt="">
+            </div>
+            <div class="main-article__title">МВД Беларуси выступило на турнире спецназа в Дубае</div>
+            <div class="main-article__publication-date">23 октября 2023, 11:50</div>
+            <div class="main-article__content">
+              <div class="main-article__arguments">
+                <div class="main-article__argument">4 февраля, Минск /Корр. БЕЛТА/. Как безопасность БелАЭС была доказана на международном уровне, рассказал во время круглого стола в БЕЛТА заместитель главного инженера по подготовке персонала - начальник учебно-тренировочного центра РУП "Белорусская атомная электростанция" Александр Ерин.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="articles-big__list-news">
+          <div class="articles-big__list-news__title">Главные новости</div>
+          <ul class="articles-big__list">
+            <li class="articles-big__list__item">
+              <div class="articles-big__list__about">
+                <div class="articles-big__title">Оранжевый уровень безопасности будет действовать 5 февраля</div>
+                <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
+              </div>
+              <div class="articles-big__media">
+                <img class="articles-big__media-img" src="{% static 'img/pogoda.jpg' %}" alt="">
+              </div>
+            </li>
+            <li class="articles-big__list__item">
+              <div class="articles-big__list__about">
+                <div class="articles-big__title">МВД Беларуси выступило на турнире спецназа в Дубае</div>
+                <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
+              </div>
+              <div class="articles-big__media">
+                <img class="articles-big__media-img" src="{% static 'img/specdubai.jpg' %}" alt="">
+              </div>
+            </li>
+            <li class="articles-big__list__item">
+              <div class="articles-big__list__about">
+                <div class="articles-big__title">Новации жилищного законодательства помогут урегулировать</div>
+                <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
+              </div>
+              <div class="articles-big__media">
+                <img class="articles-big__media-img" src="{% static 'img/nova.jpg' %}" alt="">
+              </div>
+            </li>
+            <li class="articles-big__list__item">
+              <div class="articles-big__list__about">
+                <div class="articles-big__title">Святыню частицу Пояса Пресвятой Богородицы доставят 10 февраля в РБ</div>
+                <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
+              </div>
+              <div class="articles-big__media">
+                <img class="articles-big__media-img" src="{% static 'img/svyat.jpg' %}" alt="">
+              </div>
+            </li>
+          </ul>
+          <button class="articles-big__list__button">Все главные новости</button>
+        </div>
+      </div>
+      <ul class="articles__small__list">
+        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+      </ul>
+    </div>
+  </section>
+</div>
+{% endblock %}

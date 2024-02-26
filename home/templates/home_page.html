@@ -19,8 +19,8 @@
       <div class="main__video-player">
         <div class="documentation__video">
           <div class="video-player">
-            <video src="/api/v1/stream/{{documentation.file}}" class="main-video" poster="media/{{documentation.image}}">
-              <source src={{documentation.file}} type="video/mp4" />
+            <video class="main-video" poster="media/{{documentation.image}}">
+              <source src="/api/v1/stream/{{documentation.file}}" type="video/mp4" />
             </video>
             <div class="progressAreaTime">progressAreaTime</div>
             <div class="controls active">

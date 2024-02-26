@@ -4,7 +4,6 @@ from rest_framework.decorators import api_view
 from streaming.servises import open_file
 
 
-@api_view(['GET'])
 def get_streaming_video(request, path):
     file, status_code, conthent_length, content_range = open_file(request, path)
     response = StreamingHttpResponse(file, status=status_code, content_type='video/mp4')

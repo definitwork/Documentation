@@ -34,9 +34,9 @@ class UserRegistrationAPIView(APIView):
             if User.objects.filter(username=username).exists():
                 return Response(status=status.HTTP_400_BAD_REQUEST)
             if User.objects.filter(email=email).exists():
-                return Response({'error': 'Пользователь с таким email уже существует'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'email': 'Пользователь с таким email уже существует'}, status=status.HTTP_400_BAD_REQUEST)
             if password != password2:
-                return Response({'error': 'Пароли не совпадают'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'password2': 'Пароли не совпадают'}, status=status.HTTP_400_BAD_REQUEST)
             user = User(username=username, email=email, password=password, is_active=False)
             user.set_password(password)
             user.save()

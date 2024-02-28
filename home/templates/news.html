@@ -5,6 +5,7 @@
 {% block head %}
 <title>Новости</title>
 <link rel="stylesheet" crossorigin href="{% static 'css/news.css' %}">
+<script type="module" crossorigin src="{% static 'js/news.js' %}"></script>
 {% endblock %}
 
 {% block main %}
@@ -51,75 +52,269 @@
     </nav>
     <div class="articles__content">
       <div class="news__big-articles">
-        <div class="news__main-article">
-          <div class="main-article__item">
-            <div class="main-article__media">
-              <img class="main-article__media-img" src="{% static 'img/belas.jpg' %}" alt="">
-            </div>
-            <div class="main-article__title">МВД Беларуси выступило на турнире спецназа в Дубае</div>
-            <div class="main-article__publication-date">23 октября 2023, 11:50</div>
-            <div class="main-article__content">
-              <div class="main-article__arguments">
-                <div class="main-article__argument">4 февраля, Минск /Корр. БЕЛТА/. Как безопасность БелАЭС была доказана на международном уровне, рассказал во время круглого стола в БЕЛТА заместитель главного инженера по подготовке персонала - начальник учебно-тренировочного центра РУП "Белорусская атомная электростанция" Александр Ерин.</div>
+        <div class="news__main">
+          <div class="news__main-article">
+            <div class="main-article__item">
+              <div class="main-article__media">
+                <img class="main-article__media-img" src="{% static 'img/belas.jpg' %}" alt="">
+              </div>
+              <div class="main-article__title">МВД Беларуси выступило на турнире спецназа в Дубае</div>
+              <div class="main-article__publication-date">23 октября 2023, 11:50</div>
+              <div class="main-article__content">
+                <div class="main-article__arguments">
+                  <div class="main-article__argument">4 февраля, Минск /Корр. БЕЛТА/. Как безопасность БелАЭС была доказана на международном уровне, рассказал во время круглого стола в БЕЛТА заместитель главного инженера по подготовке персонала - начальник учебно-тренировочного центра РУП "Белорусская атомная электростанция" Александр Ерин.</div>
+                </div>
               </div>
             </div>
           </div>
+          <div class="articles-big__list-news">
+            <div class="articles-big__list-news__title">Главные новости</div>
+            <ul class="articles-big__list">
+              <li class="articles-big__list__item">
+                <div class="articles-big__list__about">
+                  <div class="articles-big__title">Оранжевый уровень безопасности будет действовать 5 февраля</div>
+                  <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
+                </div>
+                <div class="articles-big__media">
+                  <img class="articles-big__media-img" src="{% static 'img/pogoda.jpg' %}" alt="">
+                </div>
+              </li>
+              <li class="articles-big__list__item">
+                <div class="articles-big__list__about">
+                  <div class="articles-big__title">МВД Беларуси выступило на турнире спецназа в Дубае</div>
+                  <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
+                </div>
+                <div class="articles-big__media">
+                  <img class="articles-big__media-img" src="{% static 'img/specdubai.jpg' %}" alt="">
+                </div>
+              </li>
+              <li class="articles-big__list__item">
+                <div class="articles-big__list__about">
+                  <div class="articles-big__title">Новации жилищного законодательства помогут урегулировать</div>
+                  <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
+                </div>
+                <div class="articles-big__media">
+                  <img class="articles-big__media-img" src="{% static 'img/nova.jpg' %}" alt="">
+                </div>
+              </li>
+              <li class="articles-big__list__item">
+                <div class="articles-big__list__about">
+                  <div class="articles-big__title">Святыню частицу Пояса Пресвятой Богородицы доставят 10 февраля в РБ</div>
+                  <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
+                </div>
+                <div class="articles-big__media">
+                  <img class="articles-big__media-img" src="{% static 'img/svyat.jpg' %}" alt="">
+                </div>
+              </li>
+            </ul>
+            <button class="articles-big__list__button">Все главные новости</button>
+          </div>
         </div>
-        <div class="articles-big__list-news">
-          <div class="articles-big__list-news__title">Главные новости</div>
-          <ul class="articles-big__list">
-            <li class="articles-big__list__item">
-              <div class="articles-big__list__about">
-                <div class="articles-big__title">Оранжевый уровень безопасности будет действовать 5 февраля</div>
-                <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
+        <div class="articles-categories__sliders">
+          <div class="category__filter">
+            <div class="category__filter__list">
+              <div class="category__filter__list__item active">Экономика</div>
+              <div class="category__filter__list__item">Политика</div>
+            </div>
+          </div>
+          <div class="category__slider">
+            <button class="category__slider__btn slider__btn-left">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.5922 9.24092C14.5124 9.16653 14.4484 9.07683 14.404 8.97717C14.3596 8.8775 14.3357 8.76991 14.3338 8.66082C14.3318 8.55172 14.3519 8.44336 14.3928 8.34219C14.4336 8.24102 14.4945 8.14911 14.5716 8.07196C14.6488 7.99481 14.7407 7.93398 14.8418 7.89312C14.943 7.85225 15.0514 7.83219 15.1605 7.83411C15.2696 7.83604 15.3772 7.85991 15.4768 7.90432C15.5765 7.94873 15.6662 8.01276 15.7406 8.09258L20.0739 12.4259C20.2261 12.5783 20.3115 12.7848 20.3115 13.0001C20.3115 13.2154 20.2261 13.4219 20.0739 13.5743L15.7406 17.9076C15.6662 17.9874 15.5765 18.0514 15.4768 18.0958C15.3772 18.1403 15.2696 18.1641 15.1605 18.1661C15.0514 18.168 14.943 18.1479 14.8418 18.1071C14.7407 18.0662 14.6488 18.0054 14.5716 17.9282C14.4945 17.8511 14.4336 17.7592 14.3928 17.658C14.3519 17.5568 14.3318 17.4484 14.3338 17.3394C14.3357 17.2303 14.3596 17.1227 14.404 17.023C14.4484 16.9233 14.5124 16.8336 14.5922 16.7593L17.5389 13.8126H7.0414C6.82592 13.8126 6.61925 13.727 6.46688 13.5746C6.31451 13.4222 6.2289 13.2156 6.2289 13.0001C6.2289 12.7846 6.31451 12.5779 6.46688 12.4256C6.61925 12.2732 6.82592 12.1876 7.0414 12.1876H17.5389L14.5922 9.24092Z" fill="black"/>
+              </svg>
+            </button>
+            <div class="article__slider">
+              <div class="slider__content" style="margin-left: 10px;">
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/mihalkov.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">
+                    
+                    Никита Михалков: "Оскар" умер"
+                                                        
+                  </div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/mihalkov.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">
+                    
+                    Никита Михалков: "Оскар" умер"
+                                                        
+                  </div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/mihalkov.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">
+                    
+                    Никита Михалков: "Оскар" умер"
+                                                        
+                  </div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/mihalkov.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">
+                    
+                    Никита Михалков: "Оскар" умер"
+                                                        
+                  </div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/mihalkov.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">
+                    
+                    Никита Михалков: "Оскар" умер"
+                                                        
+                  </div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/mihalkov.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">
+                    
+                    Никита Михалков: "Оскар" умер"
+                                                        
+                  </div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/mihalkov.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">
+                    
+                    Никита Михалков: "Оскар" умер"
+                                                        
+                  </div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/mihalkov.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">
+                    
+                    Никита Михалков: "Оскар" умер"
+                                                        
+                  </div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/mihalkov.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">
+                    
+                    Никита Михалков: "Оскар" умер"
+                                                        
+                  </div>
+                </div>
               </div>
-              <div class="articles-big__media">
-                <img class="articles-big__media-img" src="{% static 'img/pogoda.jpg' %}" alt="">
+            </div>
+            <button class="category__slider__btn slider__btn-right">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.5922 9.24092C14.5124 9.16653 14.4484 9.07683 14.404 8.97717C14.3596 8.8775 14.3357 8.76991 14.3338 8.66082C14.3318 8.55172 14.3519 8.44336 14.3928 8.34219C14.4336 8.24102 14.4945 8.14911 14.5716 8.07196C14.6488 7.99481 14.7407 7.93398 14.8418 7.89312C14.943 7.85225 15.0514 7.83219 15.1605 7.83411C15.2696 7.83604 15.3772 7.85991 15.4768 7.90432C15.5765 7.94873 15.6662 8.01276 15.7406 8.09258L20.0739 12.4259C20.2261 12.5783 20.3115 12.7848 20.3115 13.0001C20.3115 13.2154 20.2261 13.4219 20.0739 13.5743L15.7406 17.9076C15.6662 17.9874 15.5765 18.0514 15.4768 18.0958C15.3772 18.1403 15.2696 18.1641 15.1605 18.1661C15.0514 18.168 14.943 18.1479 14.8418 18.1071C14.7407 18.0662 14.6488 18.0054 14.5716 17.9282C14.4945 17.8511 14.4336 17.7592 14.3928 17.658C14.3519 17.5568 14.3318 17.4484 14.3338 17.3394C14.3357 17.2303 14.3596 17.1227 14.404 17.023C14.4484 16.9233 14.5124 16.8336 14.5922 16.7593L17.5389 13.8126H7.0414C6.82592 13.8126 6.61925 13.727 6.46688 13.5746C6.31451 13.4222 6.2289 13.2156 6.2289 13.0001C6.2289 12.7846 6.31451 12.5779 6.46688 12.4256C6.61925 12.2732 6.82592 12.1876 7.0414 12.1876H17.5389L14.5922 9.24092Z" fill="black"/>
+              </svg>
+            </button>
+          </div>
+          <div class="category__filter">
+            <div class="category__filter__list">
+              <div class="category__filter__list__item active">Общество</div>
+              <div class="category__filter__list__item">Люди</div>
+            </div>
+          </div>
+          <div class="category__slider">
+            <button class="category__slider__btn slider__btn-left">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.5922 9.24092C14.5124 9.16653 14.4484 9.07683 14.404 8.97717C14.3596 8.8775 14.3357 8.76991 14.3338 8.66082C14.3318 8.55172 14.3519 8.44336 14.3928 8.34219C14.4336 8.24102 14.4945 8.14911 14.5716 8.07196C14.6488 7.99481 14.7407 7.93398 14.8418 7.89312C14.943 7.85225 15.0514 7.83219 15.1605 7.83411C15.2696 7.83604 15.3772 7.85991 15.4768 7.90432C15.5765 7.94873 15.6662 8.01276 15.7406 8.09258L20.0739 12.4259C20.2261 12.5783 20.3115 12.7848 20.3115 13.0001C20.3115 13.2154 20.2261 13.4219 20.0739 13.5743L15.7406 17.9076C15.6662 17.9874 15.5765 18.0514 15.4768 18.0958C15.3772 18.1403 15.2696 18.1641 15.1605 18.1661C15.0514 18.168 14.943 18.1479 14.8418 18.1071C14.7407 18.0662 14.6488 18.0054 14.5716 17.9282C14.4945 17.8511 14.4336 17.7592 14.3928 17.658C14.3519 17.5568 14.3318 17.4484 14.3338 17.3394C14.3357 17.2303 14.3596 17.1227 14.404 17.023C14.4484 16.9233 14.5124 16.8336 14.5922 16.7593L17.5389 13.8126H7.0414C6.82592 13.8126 6.61925 13.727 6.46688 13.5746C6.31451 13.4222 6.2289 13.2156 6.2289 13.0001C6.2289 12.7846 6.31451 12.5779 6.46688 12.4256C6.61925 12.2732 6.82592 12.1876 7.0414 12.1876H17.5389L14.5922 9.24092Z" fill="black"/>
+              </svg>
+            </button>
+            <div class="article__slider">
+              <div class="slider__content" style="margin-left: 10px;">
+                <div class="slider__card">
+                  <a href="" class="slider__card__link"></a>
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/deparde.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">Жерару Депардье выдвинули новое обвинение в домогательствах</div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/deparde.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">Жерару Депардье выдвинули новое обвинение в домогательствах</div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/deparde.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">Жерару Депардье выдвинули новое обвинение в домогательствах</div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/deparde.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">Жерару Депардье выдвинули новое обвинение в домогательствах</div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/deparde.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">Жерару Депардье выдвинули новое обвинение в домогательствах</div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/deparde.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">Жерару Депардье выдвинули новое обвинение в домогательствах</div>
+                </div>
+                <div class="slider__card">
+                  <div class="slider__card__media">
+                    <img class="slider__card__media__img" src="{% static 'img/deparde.jpg' %}" alt="photo">
+                  </div>
+                  <div class="slider__card__title">Жерару Депардье выдвинули новое обвинение в домогательствах</div>
+                </div>
               </div>
-            </li>
-            <li class="articles-big__list__item">
-              <div class="articles-big__list__about">
-                <div class="articles-big__title">МВД Беларуси выступило на турнире спецназа в Дубае</div>
-                <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
-              </div>
-              <div class="articles-big__media">
-                <img class="articles-big__media-img" src="{% static 'img/specdubai.jpg' %}" alt="">
-              </div>
-            </li>
-            <li class="articles-big__list__item">
-              <div class="articles-big__list__about">
-                <div class="articles-big__title">Новации жилищного законодательства помогут урегулировать</div>
-                <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
-              </div>
-              <div class="articles-big__media">
-                <img class="articles-big__media-img" src="{% static 'img/nova.jpg' %}" alt="">
-              </div>
-            </li>
-            <li class="articles-big__list__item">
-              <div class="articles-big__list__about">
-                <div class="articles-big__title">Святыню частицу Пояса Пресвятой Богородицы доставят 10 февраля в РБ</div>
-                <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
-              </div>
-              <div class="articles-big__media">
-                <img class="articles-big__media-img" src="{% static 'img/svyat.jpg' %}" alt="">
-              </div>
-            </li>
-          </ul>
-          <button class="articles-big__list__button">Все главные новости</button>
+            </div>
+            <button class="category__slider__btn slider__btn-right">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.5922 9.24092C14.5124 9.16653 14.4484 9.07683 14.404 8.97717C14.3596 8.8775 14.3357 8.76991 14.3338 8.66082C14.3318 8.55172 14.3519 8.44336 14.3928 8.34219C14.4336 8.24102 14.4945 8.14911 14.5716 8.07196C14.6488 7.99481 14.7407 7.93398 14.8418 7.89312C14.943 7.85225 15.0514 7.83219 15.1605 7.83411C15.2696 7.83604 15.3772 7.85991 15.4768 7.90432C15.5765 7.94873 15.6662 8.01276 15.7406 8.09258L20.0739 12.4259C20.2261 12.5783 20.3115 12.7848 20.3115 13.0001C20.3115 13.2154 20.2261 13.4219 20.0739 13.5743L15.7406 17.9076C15.6662 17.9874 15.5765 18.0514 15.4768 18.0958C15.3772 18.1403 15.2696 18.1641 15.1605 18.1661C15.0514 18.168 14.943 18.1479 14.8418 18.1071C14.7407 18.0662 14.6488 18.0054 14.5716 17.9282C14.4945 17.8511 14.4336 17.7592 14.3928 17.658C14.3519 17.5568 14.3318 17.4484 14.3338 17.3394C14.3357 17.2303 14.3596 17.1227 14.404 17.023C14.4484 16.9233 14.5124 16.8336 14.5922 16.7593L17.5389 13.8126H7.0414C6.82592 13.8126 6.61925 13.727 6.46688 13.5746C6.31451 13.4222 6.2289 13.2156 6.2289 13.0001C6.2289 12.7846 6.31451 12.5779 6.46688 12.4256C6.61925 12.2732 6.82592 12.1876 7.0414 12.1876H17.5389L14.5922 9.24092Z" fill="black"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-      <ul class="articles__small__list">
-        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-        <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-      </ul>
+      <div class="articles__right__nav">
+        <ul class="articles__small__list">
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
+        </ul>
+      </div>
+      
     </div>
+    
   </section>
 </div>
 {% endblock %}

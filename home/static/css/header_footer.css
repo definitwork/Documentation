@@ -45,7 +45,31 @@
 .footer .footer__menu-item.big__library {
   display: block;
 }
-
+@media screen and (max-width: 767px) {
+  .footer .logo img {
+    width: 50px;
+    height: 50px;
+    margin-left: 0;
+  }
+  .footer .footer__menu-link {
+    font-size: 14px;
+  }
+  .footer .footer__copy {
+    font-size: 14px;
+  }
+  .footer .footer__menu-item.support {
+    display: block;
+  }
+  .footer .footer__menu-list.support {
+    display: none;
+  }
+  .footer .footer__menu-item.small__library {
+    display: block;
+  }
+  .footer .footer__menu-item.big__library {
+    display: none;
+  }
+}
 @media screen and (max-width: 480px) {
   .footer .logo img {
     width: 50px;
@@ -71,6 +95,9 @@
     display: none;
   }
 }
+
+
+
 .header {
   position: relative;
   background: rgba(216, 228, 214, 0.3);
@@ -221,8 +248,8 @@
 .popup__container {
   position: relative;
   display: flex;
-  width: 550px;
-  padding: 60px 75px;
+  width: 480px;
+  padding: 50px 45px 40px 45px;
   background: white;
   border-radius: 10px;
 }
@@ -236,10 +263,16 @@
   padding: 10px;
   font-family: "Manrope Regular";
   border: 1px solid rgba(0, 0, 0, 0.37);
+  box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0);
   border-radius: 5px;
   margin-bottom: 15px;
   width: 100%;
   transition: all 0.3s ease;
+}
+
+.popup__input.popup__input_red{
+  border: 1px solid rgb(255, 0, 0);
+  box-shadow: inset 0px 0px 5px 0px rgb(255, 0, 0);
 }
 
 .popup__input:focus {
@@ -263,6 +296,7 @@
   font-family: "Manrope Regular";
   padding-top: 15px;
   text-align: center;
+  font-size: smaller;
 }
 
 .forgot-password {
@@ -280,7 +314,7 @@
   padding: 10px;
   font-family: "Manrope Regular";
   border-radius: 5px;
-  margin-top: 20px;
+  margin-top: 10px;
   background: rgb(231, 231, 231);
   cursor: pointer;
 }
@@ -308,11 +342,21 @@
 }
 
 .popup__check {
+  position: relative;
   display: flex;
   align-items: center;
-  padding: 8px 0 10px;
+  padding: 8px 0 13px;
   font-family: "Manrope Regular";
   font-size: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0);
+  transition: all 0.3s ease;
+}
+
+.popup__check.popup__input_red{
+  border: 1px solid rgb(255, 0, 0);
+  box-shadow: inset 0px 0px 5px 0px rgb(255, 0, 0);
 }
 
 .popup__check_text {
@@ -354,13 +398,21 @@
   position: absolute;
   font-size: 10px;
   color: red;
-  bottom: 5px;
+  bottom: 3px;
   left: 10px;
+}
+
+.common-error{
+  font-size: large;
+  color: red;
+  height: 18px;
+  text-align: center;
 }
 
 .popup-recaptcha {
   display: flex;
   justify-content: center;
+  height: 78px;
 }
 
 @media screen and (max-width: 480px) {

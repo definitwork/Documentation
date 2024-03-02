@@ -16,13 +16,12 @@
     </div>
     <nav class="news__articles">
       <ul class="articles__list">
-        <li class="articles__list__item">ПОЛИТИКА</li>
-        <li class="articles__list__item">ЭКОНОМИКА</li>
-        <li class="articles__list__item">ОБЩЕСТВО</li>
         <li class="articles__list__item active">ВСЕ НОВОСТИ</li>
-        <li class="articles__list__item">ПРОИСШЕСТВИЯ</li>
-        <li class="articles__list__item">ЛЮДИ</li>
-        <li class="articles__list__item">ТЕХНОЛОГИИ</li>
+        {% if news_sections %}
+        {% for item in news_sections %}
+        <li class="articles__list__item">{{ item.title.upper }}</li>
+        {% endfor %}
+        {% endif %}
       </ul>
     </nav>
     <nav class="news__articles__under-header">
@@ -56,13 +55,13 @@
           <div class="news__main-article">
             <div class="main-article__item">
               <div class="main-article__media">
-                <img class="main-article__media-img" src="{% static 'img/belas.jpg' %}" alt="">
+                <img class="main-article__media-img" src="/media/{{first_news.news_img}}" alt="">
               </div>
-              <div class="main-article__title">МВД Беларуси выступило на турнире спецназа в Дубае</div>
-              <div class="main-article__publication-date">23 октября 2023, 11:50</div>
+              <div class="main-article__title">{{first_news.news_title}}</div>
+              <div class="main-article__publication-date">{{first_news.date_published}}</div>
               <div class="main-article__content">
                 <div class="main-article__arguments">
-                  <div class="main-article__argument">4 февраля, Минск /Корр. БЕЛТА/. Как безопасность БелАЭС была доказана на международном уровне, рассказал во время круглого стола в БЕЛТА заместитель главного инженера по подготовке персонала - начальник учебно-тренировочного центра РУП "Белорусская атомная электростанция" Александр Ерин.</div>
+                  <div class="main-article__argument"></div>
                 </div>
               </div>
             </div>
@@ -70,6 +69,7 @@
           <div class="articles-big__list-news">
             <div class="articles-big__list-news__title">Главные новости</div>
             <ul class="articles-big__list">
+              {% for item in  %}
               <li class="articles-big__list__item">
                 <div class="articles-big__list__about">
                   <div class="articles-big__title">Оранжевый уровень безопасности будет действовать 5 февраля</div>
@@ -291,26 +291,7 @@
         </div>
       </div>
       <div class="articles__right__nav">
-        <ul class="articles__small__list">
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-        </ul>
+        <ul class="articles__small__list"></ul>
       </div>
       
     </div>

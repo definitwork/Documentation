@@ -207,4 +207,9 @@ def get_profile_page(request, pk):
     user = User.objects.filter(id=pk)
     content['user'] = user[0]
     content['referer'] = request.META.get('HTTP_HOST')
-    return render(request, template_name='user_profile_page.html', context=content)
+    if request.user:
+        print(request.user)
+        return render(request, template_name='user_profile_page.html', context=content)
+    else:
+        print(request.user)
+        return redirect(reverse_lazy('password_reset_error'))

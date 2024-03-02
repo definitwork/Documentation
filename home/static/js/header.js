@@ -27,9 +27,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 async function HeaderButton() {
   let user = '',
-    nouser = ''
-  const data = localStorage.getItem('username');
-  data? user = 'active' : nouser = 'active'
+    nouser = '',
+    str = 'user-profile',
+    name = ''
+  const data = localStorage.getItem('username')
+  const id = localStorage.getItem('id')
+  let notAnonimUser = location.href.includes(str)
+  {data? name = data[0].toUpperCase() : name = ''}
+  if (!notAnonimUser){data? user = 'active' : nouser = 'active';notAnonimUser = ''}else{notAnonimUser = 'active'}
+  
+
     
   return (
     `
@@ -39,10 +46,14 @@ async function HeaderButton() {
           <span class="header_log-in">Вход</span>
         </div>
       </button>
-      <button class='header__user ${user}'>U</button>
-      <div class='header__logout'>
+      <div class='header__profile ${notAnonimUser}'>
         <button class='header__logout__btn'>Выйти</button>
       </div>
+      <button class='header__user ${user}'>${name}</button>
+      <div class='header__logout'>
+        <a class='header__profile__btn' href="${location.origin}/api/v1/profile/user-profile/${id}">Личный кабинет</a>
+      </div>
+      
     `
   )
 }
@@ -72,15 +83,11 @@ function HeaderAfterRender(){
     })
     .then((data) => {
       if ('success' in data) {
-        let logout = document.querySelector('.header__logout')
-        logout.classList.toggle('active')
 
         localStorage.removeItem('username')
+        localStorage.removeItem('id')
 
-        const noname = document.querySelector('.button__log-in'),
-            user = document.querySelector('.header__user')
-        user.classList.toggle('active')
-        noname.classList.toggle('active')
+        location.href = '/'
       }
     })
   })
@@ -311,17 +318,11 @@ function auth(data, f){
   postData(url, data, f).then((data) => {
 
     if ('success' in data) {
-      const popup = document.querySelector('.popup')
-      popup.classList.toggle('active')
+      localStorage.setItem('username', data.username)
+      localStorage.setItem('id', data.id)
 
-      localStorage.setItem('username', 'Johan')
-
-      const headerButton = document.querySelector('#header-button')
-      ;(0,_components_headerButton__WEBPACK_IMPORTED_MODULE_0__.HeaderButton)().then((html) => headerButton.innerHTML = html).then(() => (0,_components_headerButton__WEBPACK_IMPORTED_MODULE_0__.HeaderAfterRender)())
-      const head = document.querySelector('head')
-      const script = document.createElement('script')
-      script.src = 'http://www.google.com/recaptcha/api.js'
-      head.append(script)
+      return location.href = `${location.origin}/api/v1/profile/user-profile/${data.id}`
+      
 
     } else {
       if (f){

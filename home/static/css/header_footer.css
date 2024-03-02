@@ -482,11 +482,23 @@
   opacity: 1;
   border: 1px solid rgba(144, 238, 144, 0.658);
 }
-.header__button .header__logout, .header__button .button__log-in, .header__button .header__user {
+.header__button .header__logout, .header__button .button__log-in, .header__button .header__user, .header__profile  {
   overflow: hidden;
   opacity: 0;
   height: 0;
   width: 0;
+}
+
+.header__profile{
+  position: absolute;
+}
+
+.header__profile.active{
+  position: static;
+  overflow: auto;
+  opacity: 1;
+  height: auto;
+  width: auto;
 }
 .header__button .button__log-in:hover, .header__button .header__user:hover {
   background: rgba(177, 168, 168, 0.171);
@@ -502,17 +514,20 @@
   overflow: auto;
   opacity: 1;
   height: auto;
-  width: auto;
+  width: max-content;
 }
-.header__button .header__logout__btn {
-  background: rgba(144, 238, 144, 0.425);
-  padding: 10px 40px;
-  border-radius: 5px;
+.header__button .header__logout__btn  {
+  font-family: Manrope Regular;
+  font-size: 18px;
+  text-decoration: underline;
   cursor: pointer;
 }
-.header__button .header__logout__btn:hover {
-  background: rgba(178, 238, 144, 0.425);
+.header__profile__btn{
+  display: block;
+  background: rgba(144, 238, 144, 0.425);
+  padding: 10px 25px;
 }
+
 
 @media screen and (max-width: 800px) {
   .header__button .button__log-in.active {

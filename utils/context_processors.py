@@ -15,5 +15,6 @@ def header_footer_context(request):
     content['contacts_icons'] = contacts_icons
     content['contacts_names'] = contacts_names
     content['referer'] = request.META.get('HTTP_HOST')
+    print(content['referer'])
 
     return content

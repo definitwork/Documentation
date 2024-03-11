@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+<title>Документация</title>
+<link rel="stylesheet" crossorigin href="{% static 'css/article.css' %}">
+<script type="module" crossorigin src="{% static 'js/article.js' %}"></script>
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <section id="article" class="article">
+    <div class="articles__content">
+        <div class="news__big-articles">
+          <div class="news__main">
+            <div class="news__main-article">
+              <div class="main-article__item">
+                <div class="main-article__title">{{object.news_title}}</div>
+                <div class="main-article__media">
+                  <img class="main-article__media-img" src="/media/{{object.news_img}}" alt="">
+                </div>
+                <div class="main-article__publication-date">{{object.date_published}}</div>
+                <div class="main-article__content">
+                  <div class="main-article__arguments">
+                    <div class="main-article__argument">{{object.news_body}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="articles__right__nav">
+          <ul class="articles__small__list"></ul>
+        </div>
+        <div class="articles-big__list-news">
+          <ul class="articles-big__list">
+            {% if news_list %}
+            {% for item in news_list%}
+            <li class="articles-big__list__item">
+              <a href="/this_news/{{item.id}}/" class="articles-big__list__link"></a>
+              <div class="articles-big__list__about">
+                <div class="articles-big__title">{{item.news_title}}</div>
+                <div class="articles-big__publication-date">{{item.date_published}}</div>
+              </div>
+              <div class="articles-big__media">
+                <img class="articles-big__media-img" src="/media/{{item.news_img}}" alt="">
+              </div>
+            </li>
+            {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+  </section>
+</div>
+{% endblock %}

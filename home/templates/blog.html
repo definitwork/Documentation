@@ -5,7 +5,7 @@
 {% block head %}
 <title>Блог</title>
 <link rel="stylesheet" crossorigin href="{% static 'css/blog.css' %}">
-<script type="module" crossorigin src="{% static 'js/news.js' %}"></script>
+<script type="module" crossorigin src="{% static 'js/blog.js' %}"></script>
 {% endblock %}
 
 {% block main %}
@@ -13,94 +13,40 @@
   <section id="blog" class="blog">
     <nav class="blog__articles">
       <ul class="articles__list">
-        <li class="articles__list__item">Семья</li>
-        <li class="articles__list__item">Друзья</li>
-        <li class="articles__list__item">Общество</li>
-        <li class="articles__list__item">Работа</li>
-        <li class="articles__list__item active">Все статьи</li>
-        <li class="articles__list__item">Профобьединение</li>
-        <li class="articles__list__item">Религия</li>
-        <li class="articles__list__item">Государство</li>
-        <li class="articles__list__item">Дети</li>
-      </ul>
-    </nav>
-    <nav class="blog__articles__under-header">Все статьи
-      <svg class="svg-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M133.404444 349.108148l365.131852 352.616296c1.232593 1.137778 2.56 2.085926 3.982222 2.939259 7.205926 4.361481 16.592593 3.508148 22.945185-2.56l365.131852-352.616296c7.68-7.395556 7.774815-19.816296 0-27.306667-7.395556-7.205926-19.342222-6.826667-26.737778 0.379259l-351.762963 339.626667c0 0 0 0-0.094815 0L160.047407 322.180741c-7.395556-7.205926-19.342222-7.49037-26.737778-0.379259C125.62963 329.291852 125.724444 341.712593 133.404444 349.108148z"  /></svg>
-      <ul class="articles__list__under-header active">
-        <li class="articles__list__under-header__item">Семья</li>
-        <li class="articles__list__under-header__item">Друзья</li>
-        <li class="articles__list__under-header__item">Общество</li>
-        <li class="articles__list__under-header__item">Работа</li>
-        <li class="articles__list__under-header__item active">Все статьи</li>
-        <li class="articles__list__under-header__item">Профобьединение</li>
-        <li class="articles__list__under-header__item">Религия</li>
-        <li class="articles__list__under-header__item">Государство</li>
-        <li class="articles__list__under-header__item">Дети</li>
+        {% if blogs_sections %}
+        <li class="articles__list__item active">ВСЕ СТАТЬИ</li>
+        {% for item in blogs_sections %}
+        <li class="articles__list__item" data-id="{{item.id}}">{{ item.title.upper }}</li>
+        {% endfor %}
+        {% else %}
+        <li class="articles__list__item active">Статьи на этапе доставки в ваш регион!</li>
+        {% endif %}
       </ul>
     </nav>
     <div class="articles__content">
       <ul class="articles-big__list">
+        {% if blogs__aricles %}
+        {% for item in blogs__aricles %}
         <li class="articles-big__list__item">
-          <div class="articles-big__title">Применение витамина Д для профилактики рахита у новорожденных детей</div>
-          <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
+          <div class="articles-big__title">{{item.blog_title}}</div>
+          <div class="articles-big__publication-date">{{item.date_published}}</div>
           <div class="articles-big__content">
             <div class="articles-big__arguments">
-              <div class="articles-big__argument">Регуляцию фосфорно-кальциевого обмена кроме витамина Д осуществляют паратгормон и кальцитонин. Представим себе общую схему обмена кальция и фосфора. Физиологические колебания Са и Р поддерживаются в довольно узких границах (Са крови – 2-2,8 ммоль/л). Снижение Са в крови немедленно активирует синтез паратиреоидного гормона, который усиливает выведение Са из костной ткани в кровь, а также выделение фосфора почками, в результате уменьшения его обратного всасывания в почечных канальцах и сохраняется таким образом, нормальное соотношение Са:Р (произведение Са х Р является постоянной величиной). При снижении Са в крови витамин Д3 временно увеличивает вымывание Са из кости, одновременно усиливает всасывание Са из кишечника. После восстановления Са в крови до нормы витамин Д улучшает качество костной ткани: способствует увеличению количества костных клеток-остеобластов, минерализацию кости.</div>
-              <div class="articles-big__link">Показать полностью</div>
+              <div class="articles-big__argument">{{item.blog_body}}</div>
+              <a href="/this_blog/{{item.id}}/" class="articles-big__link">Показать полностью</a>
             </div>
             <div class="articles-big__media">
-              <img class="articles-big__media-img" src="{% static 'img/body.jpg' %}" alt="">
+              <img class="articles-big__media-img" src="/media/{{item.blog_img}}" alt="">
             </div>
           </div>
         </li>
-        <li class="articles-big__list__item">
-          <div class="articles-big__title">Применение витамина Д для профилактики рахита у новорожденных детей</div>
-          <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
-          <div class="articles-big__content">
-            <div class="articles-big__arguments">
-              <div class="articles-big__argument">Регуляцию фосфорно-кальциевого обмена кроме витамина Д осуществляют паратгормон и кальцитонин. Представим себе общую схему обмена кальция и фосфора. Физиологические колебания Са и Р поддерживаются в довольно узких границах (Са крови – 2-2,8 ммоль/л). Снижение Са в крови немедленно активирует синтез паратиреоидного гормона, который усиливает выведение Са из костной ткани в кровь, а также выделение фосфора почками, в результате уменьшения его обратного всасывания в почечных канальцах и сохраняется таким образом, нормальное соотношение Са:Р (произведение Са х Р является постоянной величиной). При снижении Са в крови витамин Д3 временно увеличивает вымывание Са из кости, одновременно усиливает всасывание Са из кишечника. После восстановления Са в крови до нормы витамин Д улучшает качество костной ткани: способствует увеличению количества костных клеток-остеобластов, минерализацию кости.</div>
-              <div class="articles-big__link">Показать полностью</div>
-            </div>
-            <div class="articles-big__media">
-              
-            </div>
-          </div>
-        </li>
-        <li class="articles-big__list__item">
-          <div class="articles-big__title">Применение витамина Д для профилактики рахита у новорожденных детей</div>
-          <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
-          <div class="articles-big__content">
-            <div class="articles-big__arguments">
-              <div class="articles-big__argument">Регуляцию фосфорно-кальциевого обмена кроме витамина Д осуществляют паратгормон и кальцитонин. Представим себе общую схему обмена кальция и фосфора. Физиологические колебания Са и Р поддерживаются в довольно узких границах (Са крови – 2-2,8 ммоль/л). Снижение Са в крови немедленно активирует синтез паратиреоидного гормона, который усиливает выведение Са из костной ткани в кровь, а также выделение фосфора почками, в результате уменьшения его обратного всасывания в почечных канальцах и сохраняется таким образом, нормальное соотношение Са:Р (произведение Са х Р является постоянной величиной). При снижении Са в крови витамин Д3 временно увеличивает вымывание Са из кости, одновременно усиливает всасывание Са из кишечника. После восстановления Са в крови до нормы витамин Д улучшает качество костной ткани: способствует увеличению количества костных клеток-остеобластов, минерализацию кости.</div>
-              <div class="articles-big__link">Показать полностью</div>
-            </div>
-            <div class="articles-big__media"></div>
-          </div>
-        </li>
-        <li class="articles-big__list__item">
-          <div class="articles-big__title">Применение витамина Д для профилактики рахита у новорожденных детей</div>
-          <div class="articles-big__publication-date">23 октября 2023, 11:50</div>
-          <div class="articles-big__content">
-            <div class="articles-big__arguments">
-              <div class="articles-big__argument">Регуляцию фосфорно-кальциевого обмена кроме витамина Д осуществляют паратгормон и кальцитонин. Представим себе общую схему обмена кальция и фосфора. Физиологические колебания Са и Р поддерживаются в довольно узких границах (Са крови – 2-2,8 ммоль/л). Снижение Са в крови немедленно активирует синтез паратиреоидного гормона, который усиливает выведение Са из костной ткани в кровь, а также выделение фосфора почками, в результате уменьшения его обратного всасывания в почечных канальцах и сохраняется таким образом, нормальное соотношение Са:Р (произведение Са х Р является постоянной величиной). При снижении Са в крови витамин Д3 временно увеличивает вымывание Са из кости, одновременно усиливает всасывание Са из кишечника. После восстановления Са в крови до нормы витамин Д улучшает качество костной ткани: способствует увеличению количества костных клеток-остеобластов, минерализацию кости.</div>
-              <div class="articles-big__link">Показать полностью</div>
-            </div>
-            <div class="articles-big__media"></div>
-          </div>
-        </li>
+        {% endfor %}
+        {% else %}
+        <li class="articles__list__item active">Статьи скоро появятся!</li>
+        {% endif %}
       </ul>
       <div class="articles__right__nav">
-        <ul class="articles__small__list">
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-          <li class="articles__small__list__item">Применение витамина Д для профилактики рахита у новорожденных детей</li>
-        </ul>
+        <ul class="articles__small__list"></ul>
       </div>
     </div>
   </section>

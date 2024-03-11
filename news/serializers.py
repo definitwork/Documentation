@@ -7,7 +7,7 @@ from .models import NewsSection, News
 class NewsSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewsSection
-        fields = ['title', ]
+        fields = ['title', 'id',]
 
 
 class AllNewsTitleSerializer(serializers.ModelSerializer):

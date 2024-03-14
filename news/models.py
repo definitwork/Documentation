@@ -1,4 +1,5 @@
 from django.db import models
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class NewsSection(models.Model):
@@ -15,8 +16,10 @@ class NewsSection(models.Model):
 
 class News(models.Model):
     news_title = models.CharField(verbose_name='Заголовок', max_length=255)  # Заголовки новости
-    news_body = models.CharField(verbose_name='Содержание', max_length=255)  # Сама новость, ее содержание
-    news_sections = models.ManyToManyField('NewsSection', related_name='news_section')  # Новостные секции
+    news_body = CKEditor5Field('Содержание', config_name='extends')  # Сама новость, ее содержание
+    news_sections = models.ManyToManyField('NewsSection',
+                                           related_name='news_section',
+                                           verbose_name='Новостные секции',)  # Новостные секции
     news_img = models.ImageField(verbose_name='Картинка для новости',
                                  upload_to='img/news', blank=True, null=True)  # Картинка для новости
     news_video = models.FileField(verbose_name='Видео для новости',

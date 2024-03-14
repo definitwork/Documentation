@@ -1,4 +1,5 @@
 from django.db import models
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class BlogsSection(models.Model):
@@ -15,8 +16,10 @@ class BlogsSection(models.Model):
 
 class Blogs(models.Model):
     blog_title = models.CharField(verbose_name='Заголовок', max_length=255)  # Заголовки блога
-    blog_body = models.CharField(verbose_name='Содержание', max_length=255)  # Содержание блога
-    blog_sections = models.ManyToManyField('BlogsSection', related_name='blog_sections')  # Секции блога
+    blog_body = CKEditor5Field('Содержание', config_name='extends')  # Содержание блога
+    blog_sections = models.ManyToManyField('BlogsSection',
+                                           related_name='blog_sections',
+                                           verbose_name='Секции блога')  # Секции блога
     blog_img = models.ImageField(verbose_name='Картинка для блога',
                                  upload_to='./blog/img', blank=True, null=True)  # Картинка для блога
     blog_video = models.FileField(verbose_name='Видео для блога',
@@ -30,6 +33,7 @@ class Blogs(models.Model):
         verbose_name_plural = 'Блоги'
         verbose_name = 'Блог'
         ordering = ['-date_published']
+
 
     def __str__(self):
         return self.blog_title

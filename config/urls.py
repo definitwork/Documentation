@@ -51,6 +51,7 @@ urlpatterns = [
     path('api/v1/blog/', include('blog.urls')),
     path('api/v1/docum/', include('docum_app.urls')),
     path('', include('home.urls')),
+    path("ckeditor5/", include('django_ckeditor_5.urls'), name="ck_editor_5_upload_file"),
 ]
 
 if settings.DEBUG:

@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django_ckeditor_5.fields import CKEditor5Field
+
 
 User = get_user_model()
 
@@ -30,7 +32,7 @@ class CategoryContent(models.Model):
     doc_categories = models.ManyToManyField('DocCategory',
                                             verbose_name='Связанные категории')
     content_title = models.CharField(max_length=255, verbose_name='Заголовок статьи')
-    text = models.TextField(verbose_name='Текст статьи')
+    text = CKEditor5Field(verbose_name='Текст статьи', config_name='extends')
     video = models.FileField(upload_to='video/category_content', verbose_name='Видео из статьи', blank=True, null=True)
     article_image = models.ImageField(upload_to='img/category_content', verbose_name='Картинка из статьи', blank=True,
                                       null=True)

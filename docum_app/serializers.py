@@ -1,12 +1,18 @@
 from rest_framework import serializers
 from django.utils import formats
 
-from .models import DocCategory, CategoryContent, Book, UserPaidContent
+from .models import DocCategory, SubCategory, CategoryContent, Book, UserPaidContent
 
 
 class DocCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = DocCategory
+        fields = '__all__'
+
+
+class SubCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SubCategory
         fields = '__all__'
 
 

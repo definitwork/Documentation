@@ -12,28 +12,30 @@ def get_home_page(request):
 
     documentation = AboutResource.objects.all()
     actuality = SomeFacts.objects.all()
-    
-    content['documentation'] = documentation[0]
+
+    content['documentation'] = documentation.first()
     content['actuality'] = actuality
-    
+
     return render(request, template_name='home_page.html', context=content)
+
 
 def get_contacts(request):
     content = {}
 
-
     return render(request, template_name='contacts.html', context=content)
+
 
 def get_experts(request):
     content = {}
-    
 
     return render(request, template_name='experts.html', context=content)
 
+
 def get_documentation(request):
     content = {}
-    
+
     return render(request, template_name='documentation.html', context=content)
+
 
 def get_blog(request):
     content = {}
@@ -47,6 +49,7 @@ def get_blog(request):
 
     return render(request, template_name='blog.html', context=content)
 
+
 def get_news(request):
     content = {}
 
@@ -59,10 +62,12 @@ def get_news(request):
 
     return render(request, template_name='news.html', context=content)
 
+
 def get_library(request):
     content = {}
-    
+
     return render(request, template_name='library.html', context=content)
+
 
 class ThisNewsDetailView(DetailView):
     model = News

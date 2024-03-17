@@ -10,11 +10,11 @@ def header_footer_context(request):
     contacts_names = contacts_queryset.filter(contact_title__startswith="Написать")
     contacts_icons = contacts_queryset.exclude(contact_title__startswith="Написать")
 
-    content['copyright'] = copyright_queryset[0]
+    content['copyright'] = copyright_queryset.first()
     content['contacts'] = contacts_queryset
     content['contacts_icons'] = contacts_icons
     content['contacts_names'] = contacts_names
     content['referer'] = request.META.get('HTTP_HOST')
-    print(content['referer'])
+    # print(content['referer'])
 
     return content

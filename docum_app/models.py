@@ -7,6 +7,7 @@ User = get_user_model()
 class DocCategory(models.Model):
     category_title = models.CharField(max_length=255, verbose_name='Заголовок категории', unique=True)
     description = models.TextField(verbose_name='Описание категории', blank=True, null=True)
+    slug = models.SlugField(unique=True, verbose_name='URL')
     video = models.FileField(upload_to='video/doc_category', verbose_name='Видео', blank=True, null=True)
     cover_img = models.ImageField(upload_to='img/doc_category', verbose_name='Картинка, покрывающая видео', blank=True,
                                   null=True)
@@ -89,4 +90,4 @@ class UserPaidContent(models.Model):
         verbose_name = 'Оплаченный контент пользователя'
 
     def __str__(self):
-        return f'Оплата {self.user} - Заказ ID №: {self.id}'
+        return f'Оплата от {self.user} - Заказ ID №: {self.id}'

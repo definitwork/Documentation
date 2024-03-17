@@ -9,6 +9,16 @@ class DocCategoryAPIView(generics.ListAPIView):
     serializer_class = DocCategorySerializer
 
 
+class OneDocCategoryListAPIView(generics.ListAPIView):
+    """ Все статьи одной категории """
+    serializer_class = CategoryContentSerializer
+
+    def get_queryset(self):
+        doc_category_slug = self.kwargs['doc_category_slug']
+        queryset = CategoryContent.objects.prefetch_related('doc_categories').filter(doc_categories__slug=doc_category_slug)
+        return queryset
+
+
 class CategoryContentAPIView(generics.ListAPIView):
     """ Выводим все статьи из раздела документации """
     queryset = CategoryContent.objects.all()

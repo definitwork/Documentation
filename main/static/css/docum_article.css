@@ -1,0 +1,72 @@
+.documentation_subcat_article{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.subcat-article__content{
+    width: 70%;
+    margin-left: 8%;
+    background: white;
+    padding: 0 10px;
+}
+
+.subcat-article__title{
+    margin-top: 60px;
+    margin-bottom: 60px;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+p{margin-bottom: 10px;line-height: 24px;}
+
+a{padding-left: 10px;}
+
+ol{
+    margin-left: 50px;
+}
+
+i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h2{
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    padding-left: 30px;
+    margin-bottom: 20px;
+}
+
+h3{
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+ul{
+    margin-left: 5%;
+}
+
+.subcat-article__content ul li{
+    
+    list-style: outside;
+    margin-bottom: 5px;
+}
+
+ul li p{
+    margin: 0;
+}
+
+ul li p a{
+    padding: 0;
+}
+
+p i img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

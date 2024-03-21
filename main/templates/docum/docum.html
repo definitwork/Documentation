@@ -1,0 +1,553 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+<title>Документация</title>
+<link rel="stylesheet" crossorigin href="{% static 'css/documentation.css' %}">
+<script type="module" crossorigin src="{% static 'js/documentation.js' %}"></script>
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <section id="documentations" class="documentations">
+    <div class="search_doc">
+      <input class='search_doc__input' type="search" name="search__doc" id="search__doc" placeholder='Поиск' />
+    </div>
+    <nav class="category__articles">
+      <ul class="categories__list">
+        {% if docum_cat %}
+        {% for item in docum_cat %}
+        <li class="category__list__item"><a href="{{item.slug}}/" class="category__list__item_link">{{ item.category_title.upper }}</a></li>
+        {% endfor %}
+        {%  else %}
+        <li class="category__list__item"><a href="telo/" class="category__list__item_link"></a>Тело</li>
+        <li class="category__list__item"><a href="dusha/" class="category__list__item_link"></a>Душа</li>
+        <li class="category__list__item"><a href="duh/" class="category__list__item_link"></a>Дух</li>
+        <li class="category__list__item"><a href="soznanie/" class="category__list__item_link"></a>Сознание</li>
+        <li class="category__list__item"><a href="obshestvo/" class="category__list__item_link"></a>Общество</li>
+        <li class="category__list__item"><a href="biznes/" class="category__list__item_link"></a>Бизнес</li>
+        <li class="category__list__item"><a href="kak-uchitsya/" class="category__list__item_link"></a>Как учиться</li>
+        <li class="category__list__item"><a href="chto-ya-znayu-o-sebe/" class="category__list__item_link"></a>Что я знаю о себе</li>
+        {% endif %}
+      </ul>
+    </nav>
+    <ul class="about-category__list">
+      {% if docum_cat %}
+      {% for item in docum_cat %}
+      <li class="about-category__list__item">
+        <div class="about-category__content {{item.revers}}">
+          <div class="about-category__info">
+            <a href="{{item.slug}}/" class="about-category__link"></a>
+            <div class="about-category__title">{{ item.category_title.upper }}</div>
+            <div class="about-category__text">
+              <p class='about-category__text__p'>{{ item.description }}</p>
+            </div>
+            <div class="about-category__button">
+              <div class="about-category__button_btn">
+                <div type="button" class='about-category__btn'>Перейти к теме
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black"/>
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black" fill-opacity="0.2"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="main__video-player">
+            <div class="documentation__video">
+              <div class="video-player">
+                {% if item.video %}
+                <video src="" class="main-video" poster="/media/{{item.cover_img}}">
+                  <source src="/media/video/doc_category/{{item.video}}" type="video/mp4" />
+                </video>
+                <div class="progressAreaTime">progressAreaTime</div>
+                <div class="controls active">
+                  <div class="progress-area">
+                    <div class="progress-bar">
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="controls-list">
+                    <div class="controls-left">
+                      <span class="icon">
+                        <i class="material-icons icon__play">play_arrow</i>
+                      </span>
+                      <span class="icon">
+                        <i class="material-icons icon__volume">volume_up</i>
+                        <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                      </span>
+                      <div class="timer">
+                        <span class="current">00:00</span> / <span class="duration"></span>
+                      </div>
+                    </div>
+                    <div class="controls-right">
+                      <span class="icon">
+                        <i class="material-icons icon__fullscreen">fullscreen</i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                {% else %}
+                <img class="main-video" src="/media/{{item.cover_img}}" alt="">
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+      {% else %}
+      <li class="about-category__list__item">
+        <div class="about-category__content">
+          <div class="about-category__info">
+            <div class="about-category__title">Тело</div>
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="about-category__button">
+              <div class="about-category__button_btn">
+                <button type="button" class='about-category__btn'>Перейти к теме
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black"/>
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black" fill-opacity="0.2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="main__video-player">
+            <div class="documentation__video">
+              <div class="video-player">
+                <video src="" class="main-video" poster="{% static 'img/body.jpg' %}">
+                  <source src="" type="video/mp4" />
+                </video>
+                <div class="progressAreaTime">progressAreaTime</div>
+                <div class="controls active">
+                  <div class="progress-area">
+                    <div class="progress-bar">
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="controls-list">
+                    <div class="controls-left">
+                      <span class="icon">
+                        <i class="material-icons icon__play">play_arrow</i>
+                      </span>
+                      <span class="icon">
+                        <i class="material-icons icon__volume">volume_up</i>
+                        <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                      </span>
+                      <div class="timer">
+                        <span class="current">00:00</span> / <span class="duration"></span>
+                      </div>
+                    </div>
+                    <div class="controls-right">
+                      <span class="icon">
+                        <i class="material-icons icon__fullscreen">fullscreen</i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content revers">
+          <div class="about-category__info">
+            <div class="about-category__title">Душа</div>
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="about-category__button">
+              <div class="about-category__button_btn">
+                <button type="button" class='about-category__btn'>Перейти к теме
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black"/>
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black" fill-opacity="0.2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="main__video-player">
+            <div class="documentation__video">
+              <div class="video-player">
+                <video src="" class="main-video" poster="{% static 'img/soul.jpg' %}">
+                  <source src="" type="video/mp4" />
+                </video>
+                <div class="progressAreaTime">progressAreaTime</div>
+                <div class="controls active">
+                  <div class="progress-area">
+                    <div class="progress-bar">
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="controls-list">
+                    <div class="controls-left">
+                      <span class="icon">
+                        <i class="material-icons icon__play">play_arrow</i>
+                      </span>
+                      <span class="icon">
+                        <i class="material-icons icon__volume">volume_up</i>
+                        <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                      </span>
+                      <div class="timer">
+                        <span class="current">00:00</span> / <span class="duration"></span>
+                      </div>
+                    </div>
+                    <div class="controls-right">
+                      <span class="icon">
+                        <i class="material-icons icon__fullscreen">fullscreen</i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content">
+          <div class="about-category__info">
+            <div class="about-category__text">
+              <div class="about-category__title">Дух</div>
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="about-category__button">
+              <div class="about-category__button_btn">
+                <button type="button" class='about-category__btn'>Перейти к теме
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black"/>
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black" fill-opacity="0.2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="main__video-player">
+            <div class="documentation__video">
+              <div class="video-player">
+                <video src="" class="main-video" poster="{% static 'img/spirit.jpg' %}">
+                  <source src="" type="video/mp4" />
+                </video>
+                <div class="progressAreaTime">progressAreaTime</div>
+                <div class="controls active">
+                  <div class="progress-area">
+                    <div class="progress-bar">
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="controls-list">
+                    <div class="controls-left">
+                      <span class="icon">
+                        <i class="material-icons icon__play">play_arrow</i>
+                      </span>
+                      <span class="icon">
+                        <i class="material-icons icon__volume">volume_up</i>
+                        <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                      </span>
+                      <div class="timer">
+                        <span class="current">00:00</span> / <span class="duration"></span>
+                      </div>
+                    </div>
+                    <div class="controls-right">
+                      <span class="icon">
+                        <i class="material-icons icon__fullscreen">fullscreen</i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content revers">
+          <div class="about-category__info">
+            <div class="about-category__title">Сознание</div>
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="about-category__button">
+              <div class="about-category__button_btn">
+                <button type="button" class='about-category__btn'>Перейти к теме
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black"/>
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black" fill-opacity="0.2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="main__video-player">
+            <div class="documentation__video">
+              <div class="video-player">
+                <video src="" class="main-video" poster="{% static 'img/consciousness.png' %}">
+                  <source src="" type="video/mp4" />
+                </video>
+                <div class="progressAreaTime">progressAreaTime</div>
+                <div class="controls active">
+                  <div class="progress-area">
+                    <div class="progress-bar">
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="controls-list">
+                    <div class="controls-left">
+                      <span class="icon">
+                        <i class="material-icons icon__play">play_arrow</i>
+                      </span>
+                      <span class="icon">
+                        <i class="material-icons icon__volume">volume_up</i>
+                        <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                      </span>
+                      <div class="timer">
+                        <span class="current">00:00</span> / <span class="duration"></span>
+                      </div>
+                    </div>
+                    <div class="controls-right">
+                      <span class="icon">
+                        <i class="material-icons icon__fullscreen">fullscreen</i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content">
+          <div class="about-category__info">
+            <div class="about-category__title">Общество</div>
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="about-category__button">
+              <div class="about-category__button_btn">
+                <button type="button" class='about-category__btn'>Перейти к теме
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black"/>
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black" fill-opacity="0.2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="main__video-player">
+            <div class="documentation__video">
+              <div class="video-player">
+                <video src="" class="main-video" poster="{% static 'img/society.jpg' %}">
+                  <source src="" type="video/mp4" />
+                </video>
+                <div class="progressAreaTime">progressAreaTime</div>
+                <div class="controls active">
+                  <div class="progress-area">
+                    <div class="progress-bar">
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="controls-list">
+                    <div class="controls-left">
+                      <span class="icon">
+                        <i class="material-icons icon__play">play_arrow</i>
+                      </span>
+                      <span class="icon">
+                        <i class="material-icons icon__volume">volume_up</i>
+                        <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                      </span>
+                      <div class="timer">
+                        <span class="current">00:00</span> / <span class="duration"></span>
+                      </div>
+                    </div>
+                    <div class="controls-right">
+                      <span class="icon">
+                        <i class="material-icons icon__fullscreen">fullscreen</i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content revers">
+          <div class="about-category__info">
+            <div class="about-category__title">Бизнес</div>
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="about-category__button">
+              <div class="about-category__button_btn">
+                <button type="button" class='about-category__btn'>Перейти к теме
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black"/>
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black" fill-opacity="0.2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="main__video-player">
+            <div class="documentation__video">
+              <div class="video-player">
+                <video src="" class="main-video" poster="{% static 'img/business.jpg' %}">
+                  <source src="" type="video/mp4" />
+                </video>
+                <div class="progressAreaTime">progressAreaTime</div>
+                <div class="controls active">
+                  <div class="progress-area">
+                    <div class="progress-bar">
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="controls-list">
+                    <div class="controls-left">
+                      <span class="icon">
+                        <i class="material-icons icon__play">play_arrow</i>
+                      </span>
+                      <span class="icon">
+                        <i class="material-icons icon__volume">volume_up</i>
+                        <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                      </span>
+                      <div class="timer">
+                        <span class="current">00:00</span> / <span class="duration"></span>
+                      </div>
+                    </div>
+                    <div class="controls-right">
+                      <span class="icon">
+                        <i class="material-icons icon__fullscreen">fullscreen</i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content">
+          <div class="about-category__info">
+            <div class="about-category__title">Как учиться</div>
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="about-category__button">
+              <div class="about-category__button_btn">
+                <button type="button" class='about-category__btn'>Перейти к теме
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black"/>
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black" fill-opacity="0.2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="main__video-player">
+            <div class="documentation__video">
+              <div class="video-player">
+                <video src="" class="main-video" poster="{% static 'img/studies.jpg' %}">
+                  <source src="" type="video/mp4" />
+                </video>
+                <div class="progressAreaTime">progressAreaTime</div>
+                <div class="controls active">
+                  <div class="progress-area">
+                    <div class="progress-bar">
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="controls-list">
+                    <div class="controls-left">
+                      <span class="icon">
+                        <i class="material-icons icon__play">play_arrow</i>
+                      </span>
+                      <span class="icon">
+                        <i class="material-icons icon__volume">volume_up</i>
+                        <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                      </span>
+                      <div class="timer">
+                        <span class="current">00:00</span> / <span class="duration"></span>
+                      </div>
+                    </div>
+                    <div class="controls-right">
+                      <span class="icon">
+                        <i class="material-icons icon__fullscreen">fullscreen</i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="about-category__list__item">
+        <div class="about-category__content revers">
+          <div class="about-category__info">
+            <div class="about-category__title">Что я знаю о себе</div>
+            <div class="about-category__text">
+              <p class='about-category__text__p'>Наш проект посвящен изучению, осмыслению, анализу разных аспектов функционирования человека в окружающей его действительности. Мы хотим поделиться информацией, полученной опытным путем и развеять сомнения о насущном. Не призываем вас к действию, а приглашаем познакомиться, если Вам это интересно.</p>
+            </div>
+            <div class="about-category__button">
+              <div class="about-category__button_btn">
+                <button type="button" class='about-category__btn'>Перейти к теме
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black"/>
+                    <path d="M13.4702 8.52997C13.3965 8.46131 13.3374 8.37851 13.2964 8.28651C13.2554 8.19451 13.2334 8.0952 13.2316 7.99449C13.2298 7.89379 13.2483 7.79376 13.286 7.70037C13.3238 7.60698 13.3799 7.52215 13.4511 7.45093C13.5224 7.37971 13.6072 7.32357 13.7006 7.28585C13.794 7.24813 13.894 7.2296 13.9947 7.23138C14.0954 7.23316 14.1947 7.2552 14.2867 7.29619C14.3787 7.33718 14.4615 7.39628 14.5302 7.46997L18.5302 11.47C18.6706 11.6106 18.7495 11.8012 18.7495 12C18.7495 12.1987 18.6706 12.3893 18.5302 12.53L14.5302 16.53C14.4615 16.6037 14.3787 16.6628 14.2867 16.7038C14.1947 16.7447 14.0954 16.7668 13.9947 16.7686C13.894 16.7703 13.794 16.7518 13.7006 16.7141C13.6072 16.6764 13.5224 16.6202 13.4511 16.549C13.3799 16.4778 13.3238 16.393 13.286 16.2996C13.2483 16.2062 13.2298 16.1062 13.2316 16.0054C13.2334 15.9047 13.2554 15.8054 13.2964 15.7134C13.3374 15.6214 13.3965 15.5386 13.4702 15.47L16.1902 12.75H6.50017C6.30126 12.75 6.11049 12.671 5.96984 12.5303C5.82919 12.3896 5.75017 12.1989 5.75017 12C5.75017 11.8011 5.82919 11.6103 5.96984 11.4696C6.11049 11.329 6.30126 11.25 6.50017 11.25H16.1902L13.4702 8.52997Z" fill="black" fill-opacity="0.2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="main__video-player">
+            <div class="documentation__video">
+              <div class="video-player">
+                <video src="" class="main-video" poster="{% static 'img/knowledge.jpg' %}">
+                  <source src="" type="video/mp4" />
+                </video>
+                <div class="progressAreaTime">progressAreaTime</div>
+                <div class="controls active">
+                  <div class="progress-area">
+                    <div class="progress-bar">
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="controls-list">
+                    <div class="controls-left">
+                      <span class="icon">
+                        <i class="material-icons icon__play">play_arrow</i>
+                      </span>
+                      <span class="icon">
+                        <i class="material-icons icon__volume">volume_up</i>
+                        <input type="range" class="volume_range" name="volume_range" min="0" max="100" id="volume_range"></input>
+                      </span>
+                      <div class="timer">
+                        <span class="current">00:00</span> / <span class="duration"></span>
+                      </div>
+                    </div>
+                    <div class="controls-right">
+                      <span class="icon">
+                        <i class="material-icons icon__fullscreen">fullscreen</i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      {% endif %}
+    </ul>
+  </section>
+</div>
+{% endblock %}

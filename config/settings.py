@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django_filters',
     'django_ckeditor_5',
 
-    'home',
+    'main',
     'streaming',
     'main_page_information',
     'copyright_contacts',

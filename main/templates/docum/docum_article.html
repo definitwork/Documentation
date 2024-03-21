@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+<title>Категория документации</title>
+<link rel="stylesheet" crossorigin href="{% static 'css/docum_article.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <section id="documentation_subcat_article" class="documentation_subcat_article">
+    <div class="subcat-article__content">
+      <div class="subcat-article__title">{{article.content_title}}</div>
+      {% autoescape off %}
+      {{article.text}}
+      {% endautoescape %}
+    </div>
+  </section>
+</div>
+{% endblock %}

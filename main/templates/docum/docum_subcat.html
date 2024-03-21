@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+<title>Категория документации</title>
+<link rel="stylesheet" crossorigin href="{% static 'css/docum_subcat.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <section id="documentation_subcat" class="documentation_subcat">
+    <div class="search_doc">
+      <div class="subcat__bread-crumbs">
+        <div class="subcat__svg">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" enable-background="new 0 0 50 50">
+            <path d="M25 42c-9.4 0-17-7.6-17-17S15.6 8 25 8s17 7.6 17 17-7.6 17-17 17zm0-32c-8.3 0-15 6.7-15 15s6.7 15 15 15 15-6.7 15-15-6.7-15-15-15z"/>
+            <path d="M25.3 34.7L15.6 25l9.7-9.7 1.4 1.4-8.3 8.3 8.3 8.3z"/>
+            <path d="M17 24h17v2H17z"/>
+          </svg>
+        </div>
+        <div class="subcat__doc_category">
+          <a href="/documentation/{{doc_category_slug}}" class="subcat__doc_category__link">{{ doc_category }}</a>
+        </div>
+        <div class="subcat__sub_category">{{ sub_category }}</div>
+      </div>
+      <input class='search_doc__input' type="search" name="search__doc" id="search__doc" placeholder='Поиск' />
+    </div>
+    <ul class="subcat__list">
+      {% if docum_subcat_articles %}
+      {% for item in docum_subcat_articles %}
+      <li class="subcat__list__item">
+        <div class="subcat__content">
+          <div class="subcat__article-info">
+            <div class="subcat__article__title">{{ item.content_title }}</div>
+            <div class="subcat__article__about">{{item.text}}</div>
+            <div class="subcat__article__button">
+              <div class="subcat__article__button_btn">
+                <button type="button" class='subcat__article__btn'>Читать дальше</button>
+              </div>
+            </div>
+          </div>
+          <div class="subcat__article-media">
+            <img src="{% static 'img/kognit.jpg' %}" alt="photo" class="subcat__article-photo">
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+      {% else %}
+      <li class="subcat__list__item">
+        <div class="subcat__content">
+          <div class="subcat__article-info">
+            <div class="subcat__article__title">Когнитивные искажения, о которых стоит помнить</div>
+            <div class="subcat__article__about">Из-за когнитивных искажений мы иногда принимаем иррациональные решения, а также выносим суждения на основе информации, которую мы обрабатываем. Фактически, когнитивные искажения — это запрограммированная ошибка в нашем мозге. Также их можно представить как простые правила, которым следует мозг, чтобы обрабатывать поступающую информацию с минимальными затратами.</div>
+            <div class="subcat__article__button">
+              <div class="subcat__article__button_btn">
+                <a href="1/" class='subcat__article__btn'>Читать дальше</a>
+              </div>
+            </div>
+          </div>
+          <div class="subcat__article-media">
+            <img src="{% static 'img/kognit.jpg' %}" alt="photo" class="subcat__article-photo">
+          </div>
+        </div>
+      </li>
+      <li class="subcat__list__item">
+        <div class="subcat__content">
+          <div class="subcat__article-info">
+            <div class="subcat__article__title">В черепах людей нашли золотое сечение</div>
+            <div class="subcat__article__about">Ранее ученые увидели золотое сечение в красивых лицах, раковине наутилуса и частях тела многих других животных. Считается, что использование этого соотношения делает геометрически правильным на вид любые фигуры. В своих работах золотое сечение часто использовал Леонардо да Винчи, чем и популяризировал эту величину.</div>
+            <div class="subcat__article__button">
+              <div class="subcat__article__button_btn">
+                <a href="2/" class='subcat__article__btn'>Читать дальше</a>
+              </div>
+            </div>
+          </div>
+          <div class="subcat__article-media">
+            <img src="{% static 'img/cherep.jpg' %}" alt="photo" class="subcat__article-photo">
+          </div>
+        </div>
+      </li>
+      {% endif %}
+    </ul>
+  </section>
+</div>
+{% endblock %}
